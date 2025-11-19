@@ -152,7 +152,92 @@
    <nav class="p-4 space-y-4"><a href="#" class="block text-gray-700 hover:text-purple-600 font-semibold" onclick="navigateTo('home'); toggleMobileMenu(); return false;">Home</a> <a href="#" class="block text-gray-700 hover:text-purple-600 font-semibold" onclick="navigateTo('verify'); toggleMobileMenu(); return false;">Verify Property</a> <a href="#" class="block text-gray-700 hover:text-purple-600 font-semibold" onclick="navigateTo('features'); toggleMobileMenu(); return false;">Features</a> <a href="#" class="block text-gray-700 hover:text-purple-600 font-semibold" onclick="navigateTo('pricing'); toggleMobileMenu(); return false;">Pricing</a> <a href="#" class="block text-gray-700 hover:text-purple-600 font-semibold" onclick="navigateTo('about'); toggleMobileMenu(); return false;">About</a> <a href="#" class="block text-gray-700 hover:text-purple-600 font-semibold" onclick="navigateTo('contact'); toggleMobileMenu(); return false;">Contact</a>
    </nav>
   </div><!-- Mobile Menu Overlay -->
-  <div id="mobileMenuOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden" onclick="toggleMobileMenu()"></div>
+  <div id="mobileMenuOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden" onclick="toggleMobileMenu()"></div><!-- GDPR Cookie Consent Banner -->
+  <div id="cookieConsent" class="hidden fixed bottom-0 left-0 right-0 bg-white shadow-2xl border-t-4 border-blue-600 z-50">
+   <div class="container mx-auto px-4 py-6">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between space-y-4 md:space-y-0">
+     <div class="flex-1 pr-0 md:pr-6">
+      <div class="flex items-start space-x-3">
+       <svg class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+       </svg>
+       <div>
+        <h3 class="text-lg font-bold text-gray-900 mb-2">Your Privacy Matters</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">We use essential cookies to ensure the platform functions correctly and optional analytics cookies to improve your experience. We never sell your data. By clicking "Accept All", you consent to our use of cookies. <a href="#" onclick="navigateTo('privacy'); return false;" class="text-blue-600 hover:underline font-semibold">Learn more in our Privacy Policy</a></p>
+       </div>
+      </div>
+     </div>
+     <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 w-full md:w-auto"><button onclick="openCookieSettings()" class="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition whitespace-nowrap"> Customize </button> <button onclick="acceptEssentialOnly()" class="px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition whitespace-nowrap"> Essential Only </button> <button onclick="acceptAllCookies()" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition whitespace-nowrap"> Accept All </button>
+     </div>
+    </div>
+   </div>
+  </div><!-- Cookie Settings Modal -->
+  <div id="cookieSettingsModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+   <div class="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+    <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+     <h3 class="text-2xl font-bold text-gray-900">Cookie Preferences</h3><button onclick="closeCookieSettings()" class="text-gray-500 hover:text-gray-700">
+      <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+      </svg></button>
+    </div>
+    <div class="p-6 space-y-6">
+     <p class="text-gray-600">We use cookies to enhance your browsing experience and analyze site traffic. Choose which types of cookies you're comfortable with below.</p><!-- Essential Cookies -->
+     <div class="border border-gray-200 rounded-lg p-4">
+      <div class="flex items-center justify-between mb-3">
+       <div class="flex items-center space-x-3">
+        <svg class="w-6 h-6 text-green-600" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+        <h4 class="text-lg font-bold text-gray-900">Essential Cookies</h4>
+       </div>
+       <div class="bg-gray-200 px-3 py-1 rounded-full text-sm font-semibold text-gray-700">
+        Always Active
+       </div>
+      </div>
+      <p class="text-sm text-gray-600 mb-2">These cookies are necessary for the website to function and cannot be disabled. They enable core functionality such as security, verification, and accessibility.</p>
+      <details class="text-sm"><summary class="cursor-pointer text-blue-600 hover:underline font-semibold">View cookies (3)</summary>
+       <ul class="mt-2 ml-4 space-y-1 text-gray-600">
+        <li>• <strong>session_token</strong> - Maintains user session</li>
+        <li>• <strong>csrf_token</strong> - Security protection</li>
+        <li>��� <strong>cookie_consent</strong> - Stores your cookie preferences</li>
+       </ul>
+      </details>
+     </div><!-- Analytics Cookies -->
+     <div class="border border-gray-200 rounded-lg p-4">
+      <div class="flex items-center justify-between mb-3">
+       <div class="flex items-center space-x-3">
+        <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewbox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+        </svg>
+        <h4 class="text-lg font-bold text-gray-900">Analytics Cookies</h4>
+       </div><label class="relative inline-flex items-center cursor-pointer"> <input type="checkbox" id="analyticsCookies" class="sr-only peer" checked>
+        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div></label>
+      </div>
+      <p class="text-sm text-gray-600 mb-2">These cookies help us understand how visitors interact with our website by collecting anonymous information. This helps us improve the user experience.</p>
+      <details class="text-sm"><summary class="cursor-pointer text-blue-600 hover:underline font-semibold">View cookies (2)</summary>
+       <ul class="mt-2 ml-4 space-y-1 text-gray-600">
+        <li>• <strong>_ga</strong> - Google Analytics (2 years)</li>
+        <li>• <strong>_gid</strong> - Google Analytics (24 hours)</li>
+       </ul>
+      </details>
+     </div><!-- Marketing Cookies -->
+     <div class="border border-gray-200 rounded-lg p-4">
+      <div class="flex items-center justify-between mb-3">
+       <div class="flex items-center space-x-3">
+        <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewbox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /> <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+        </svg>
+        <h4 class="text-lg font-bold text-gray-900">Marketing Cookies</h4>
+       </div><label class="relative inline-flex items-center cursor-pointer"> <input type="checkbox" id="marketingCookies" class="sr-only peer">
+        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div></label>
+      </div>
+      <p class="text-sm text-gray-600 mb-2">These cookies track your activity to deliver personalized advertisements. They may be used by third-party advertising partners.</p>
+      <details class="text-sm"><summary class="cursor-pointer text-blue-600 hover:underline font-semibold">View cookies (1)</summary>
+       <ul class="mt-2 ml-4 space-y-1 text-gray-600">
+        <li>• <strong>_fbp</strong> - Facebook Pixel (90 days)</li>
+       </ul>
+      </details>
+     </div>
+    </div>
+    <div class="sticky bottom-0 bg-gray-50 border-t border-gray-200 px-6 py-4 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3"><button onclick="saveCustomCookieSettings()" class="flex-1 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"> Save Preferences </button> <button onclick="closeCookieSettings()" class="flex-1 border-2 border-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-50 transition"> Cancel </button>
+    </div>
+   </div>
+  </div>
   <main><!-- HOME PAGE -->
    <div id="homePage" class="page active"><!-- Hero Section -->
     <section class="hero-section text-white py-20">
@@ -200,7 +285,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
        <div class="property-card bg-white rounded-xl shadow-lg p-8 text-center">
         <div class="feature-icon bg-blue-100 text-blue-600 mx-auto mb-6">
-         ⚡
+         ����
         </div>
         <h4 class="text-2xl font-bold text-gray-900 mb-4">Instant Results</h4>
         <p class="text-gray-600">Get comprehensive property reports in under 2 seconds. No waiting, no delays.</p>
@@ -302,7 +387,7 @@
        </div>
        <div class="text-center">
         <div class="text-4xl mb-2">
-         ⚖️
+         ��️
         </div>
         <div class="font-semibold text-gray-900">
          Solicitors
@@ -769,7 +854,7 @@
          </div>
         </div>
         <div class="flex items-start">
-         <div class="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4"><span class="text-2xl">  </span>
+         <div class="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4"><span class="text-2xl">��</span>
          </div>
          <div>
           <h4 class="text-xl font-bold text-gray-900 mb-2">AI-Powered Analysis</h4>
@@ -785,6 +870,189 @@
        <div class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl p-8">
         <p class="text-lg text-gray-700 leading-relaxed">ASSETRAZ UK is built by a team of property professionals, software engineers, and blockchain experts dedicated to transforming the UK property market. With decades of combined experience in conveyancing, real estate, and technology, we understand the challenges of property verification and have created the solution.</p>
        </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- PRIVACY POLICY PAGE -->
+   <div id="privacyPage" class="page">
+    <div class="container mx-auto px-4 py-12">
+     <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+       <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Privacy Policy</h2>
+       <p class="text-lg text-gray-600">Last updated: December 2024</p>
+      </div>
+      <div class="bg-white rounded-xl shadow-lg p-8 space-y-8"><!-- Introduction -->
+       <section>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h3>
+        <p class="text-gray-700 leading-relaxed">ASSETRAZ UK ("we", "us", "our") is committed to protecting your privacy and complying with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018. This Privacy Policy explains how we collect, use, share, and protect your personal data when you use our property verification services.</p>
+       </section><!-- Data Controller -->
+       <section>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">2. Data Controller</h3>
+        <div class="bg-gray-50 rounded-lg p-4">
+         <p class="text-gray-700 mb-2"><strong>Data Controller:</strong> ASSETRAZ UK Ltd</p>
+         <p class="text-gray-700 mb-2"><strong>Address:</strong> 123 Property Lane, London, UK, SW1A 1AA</p>
+         <p class="text-gray-700 mb-2"><strong>Email:</strong> privacy@assetraz.co.uk</p>
+         <p class="text-gray-700 mb-2"><strong>Phone:</strong> 020 1234 5678</p>
+         <p class="text-gray-700"><strong>ICO Registration Number:</strong> [Your ICO Number]</p>
+        </div>
+       </section><!-- Data We Collect -->
+       <section>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">3. Personal Data We Collect</h3>
+        <div class="space-y-4">
+         <div>
+          <h4 class="text-lg font-bold text-gray-900 mb-2">3.1 Information You Provide</h4>
+          <ul class="list-disc ml-6 text-gray-700 space-y-1">
+           <li>Name, email address, phone number (when you contact us or create an account)</li>
+           <li>Property search queries (title numbers, postcodes, addresses)</li>
+           <li>Payment information (processed securely by third-party payment processors)</li>
+           <li>Communication preferences and correspondence with us</li>
+          </ul>
+         </div>
+         <div>
+          <h4 class="text-lg font-bold text-gray-900 mb-2">3.2 Information We Collect Automatically</h4>
+          <ul class="list-disc ml-6 text-gray-700 space-y-1">
+           <li>Device information (IP address, browser type, operating system)</li>
+           <li>Usage data (pages visited, time spent, features used)</li>
+           <li>Cookies and similar tracking technologies</li>
+           <li>Log data (access times, errors, performance metrics)</li>
+          </ul>
+         </div>
+         <div>
+          <h4 class="text-lg font-bold text-gray-900 mb-2">3.3 Third-Party Data</h4>
+          <ul class="list-disc ml-6 text-gray-700 space-y-1">
+           <li>Property data from HM Land Registry</li>
+           <li>Company information from Companies House</li>
+           <li>Public records and official registries</li>
+          </ul>
+         </div>
+        </div>
+       </section><!-- Legal Basis -->
+       <section>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">4. Legal Basis for Processing</h3>
+        <p class="text-gray-700 mb-3">We process your personal data under the following legal bases:</p>
+        <ul class="list-disc ml-6 text-gray-700 space-y-2">
+         <li><strong>Contractual Necessity:</strong> To provide property verification services you've requested</li>
+         <li><strong>Legitimate Interests:</strong> To improve our services, prevent fraud, and ensure security</li>
+         <li><strong>Legal Obligation:</strong> To comply with legal requirements (e.g., tax, anti-money laundering)</li>
+         <li><strong>Consent:</strong> For marketing communications and optional cookies (you can withdraw consent anytime)</li>
+        </ul>
+       </section><!-- How We Use Data -->
+       <section>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">5. How We Use Your Data</h3>
+        <ul class="list-disc ml-6 text-gray-700 space-y-2">
+         <li>To provide property verification reports and related services</li>
+         <li>To process payments and maintain transaction records</li>
+         <li>To communicate with you about your account and queries</li>
+         <li>To improve our platform and develop new features</li>
+         <li>To detect and prevent fraud, security threats, and technical issues</li>
+         <li>To comply with legal and regulatory obligations</li>
+         <li>To send marketing communications (only with your consent)</li>
+        </ul>
+       </section><!-- Data Sharing -->
+       <section>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">6. Data Sharing and Disclosure</h3>
+        <p class="text-gray-700 mb-3">We may share your data with:</p>
+        <ul class="list-disc ml-6 text-gray-700 space-y-2">
+         <li><strong>Official Data Sources:</strong> HM Land Registry, Companies House (for property verification)</li>
+         <li><strong>Service Providers:</strong> Payment processors, hosting providers, analytics services (under strict contracts)</li>
+         <li><strong>Legal Authorities:</strong> When required by law or to protect our legal rights</li>
+         <li><strong>Business Transfers:</strong> In case of merger, acquisition, or asset sale (with notice to you)</li>
+        </ul>
+        <p class="text-gray-700 mt-3"><strong>We never sell your personal data to third parties.</strong></p>
+       </section><!-- Data Retention -->
+       <section>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">7. Data Retention</h3>
+        <p class="text-gray-700 mb-3">We retain your personal data for:</p>
+        <ul class="list-disc ml-6 text-gray-700 space-y-2">
+         <li><strong>Account Data:</strong> Until you delete your account, plus 7 years for legal compliance</li>
+         <li><strong>Transaction Records:</strong> 7 years (tax and legal requirements)</li>
+         <li><strong>Marketing Consents:</strong> Until you withdraw consent</li>
+         <li><strong>Cookies:</strong> As specified in our cookie policy (maximum 2 years)</li>
+        </ul>
+       </section><!-- Your Rights -->
+       <section>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">8. Your Rights Under UK GDPR</h3>
+        <p class="text-gray-700 mb-3">You have the following rights:</p>
+        <div class="space-y-3">
+         <div class="bg-blue-50 border-l-4 border-blue-600 p-4">
+          <h4 class="font-bold text-gray-900 mb-1">✓ Right to Access</h4>
+          <p class="text-sm text-gray-700">Request a copy of your personal data we hold</p>
+         </div>
+         <div class="bg-green-50 border-l-4 border-green-600 p-4">
+          <h4 class="font-bold text-gray-900 mb-1">✓ Right to Rectification</h4>
+          <p class="text-sm text-gray-700">Correct inaccurate or incomplete data</p>
+         </div>
+         <div class="bg-yellow-50 border-l-4 border-yellow-600 p-4">
+          <h4 class="font-bold text-gray-900 mb-1">✓ Right to Erasure</h4>
+          <p class="text-sm text-gray-700">Request deletion of your data (subject to legal obligations)</p>
+         </div>
+         <div class="bg-purple-50 border-l-4 border-purple-600 p-4">
+          <h4 class="font-bold text-gray-900 mb-1">✓ Right to Restrict Processing</h4>
+          <p class="text-sm text-gray-700">Limit how we use your data in certain circumstances</p>
+         </div>
+         <div class="bg-pink-50 border-l-4 border-pink-600 p-4">
+          <h4 class="font-bold text-gray-900 mb-1">✓ Right to Data Portability</h4>
+          <p class="text-sm text-gray-700">Receive your data in a machine-readable format</p>
+         </div>
+         <div class="bg-red-50 border-l-4 border-red-600 p-4">
+          <h4 class="font-bold text-gray-900 mb-1">✓ Right to Object</h4>
+          <p class="text-sm text-gray-700">Object to processing based on legitimate interests or for marketing</p>
+         </div>
+         <div class="bg-gray-50 border-l-4 border-gray-600 p-4">
+          <h4 class="font-bold text-gray-900 mb-1">✓ Right to Withdraw Consent</h4>
+          <p class="text-sm text-gray-700">Withdraw consent for processing at any time</p>
+         </div>
+        </div>
+        <p class="text-gray-700 mt-4">To exercise your rights, contact us at <a href="mailto:privacy@assetraz.co.uk" class="text-blue-600 hover:underline font-semibold">privacy@assetraz.co.uk</a>. We will respond within 30 days.</p>
+       </section><!-- Cookies -->
+       <section>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">9. Cookies and Tracking</h3>
+        <p class="text-gray-700 mb-3">We use cookies to enhance your experience. You can manage cookie preferences through our cookie banner or your browser settings.</p><button onclick="openCookieSettings()" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"> Manage Cookie Preferences </button>
+       </section><!-- Security -->
+       <section>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">10. Data Security</h3>
+        <p class="text-gray-700 mb-3">We implement robust security measures:</p>
+        <ul class="list-disc ml-6 text-gray-700 space-y-1">
+         <li>TLS/SSL encryption for data transmission</li>
+         <li>Encrypted storage of sensitive data</li>
+         <li>Regular security audits and penetration testing</li>
+         <li>Access controls and authentication</li>
+         <li>Employee training on data protection</li>
+         <li>Blockchain timestamping for verification integrity</li>
+        </ul>
+       </section><!-- International Transfers -->
+       <section>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">11. International Data Transfers</h3>
+        <p class="text-gray-700">Your data is primarily processed within the UK. If we transfer data outside the UK/EEA, we ensure appropriate safeguards are in place (Standard Contractual Clauses, adequacy decisions, or equivalent protections).</p>
+       </section><!-- Children's Privacy -->
+       <section>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">12. Children's Privacy</h3>
+        <p class="text-gray-700">Our services are not intended for individuals under 18. We do not knowingly collect data from children. If you believe we have collected data from a child, please contact us immediately.</p>
+       </section><!-- Changes -->
+       <section>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">13. Changes to This Policy</h3>
+        <p class="text-gray-700">We may update this Privacy Policy periodically. Significant changes will be notified via email or prominent notice on our platform. Your continued use after changes constitutes acceptance.</p>
+       </section><!-- Complaints -->
+       <section>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">14. Complaints and Regulatory Authority</h3>
+        <p class="text-gray-700 mb-3">If you're not satisfied with how we handle your data, you have the right to lodge a complaint with the UK Information Commissioner's Office (ICO):</p>
+        <div class="bg-gray-50 rounded-lg p-4">
+         <p class="text-gray-700 mb-1"><strong>Information Commissioner's Office</strong></p>
+         <p class="text-gray-700 mb-1">Wycliffe House, Water Lane, Wilmslow, Cheshire SK9 5AF</p>
+         <p class="text-gray-700 mb-1">Phone: 0303 123 1113</p>
+         <p class="text-gray-700">Website: <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">ico.org.uk</a></p>
+        </div>
+       </section><!-- Contact -->
+       <section>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">15. Contact Us</h3>
+        <p class="text-gray-700 mb-4">For any questions about this Privacy Policy or to exercise your rights:</p>
+        <div class="bg-blue-50 rounded-lg p-4">
+         <p class="text-gray-700 mb-2"><strong>Data Protection Officer</strong></p>
+         <p class="text-gray-700 mb-2">Email: <a href="mailto:privacy@assetraz.co.uk" class="text-blue-600 hover:underline font-semibold">privacy@assetraz.co.uk</a></p>
+         <p class="text-gray-700 mb-2">Phone: 020 1234 5678</p>
+         <p class="text-gray-700">Address: 123 Property Lane, London, UK, SW1A 1AA</p>
+        </div>
+       </section>
       </div>
      </div>
     </div>
@@ -906,10 +1174,10 @@
      <div>
       <h5 class="font-bold mb-4">Legal</h5>
       <ul class="space-y-2 text-sm">
-       <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+       <li><a href="#" onclick="navigateTo('privacy'); return false;" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
        <li><a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
-       <li><a href="#" class="text-gray-400 hover:text-white transition">Cookie Policy</a></li>
-       <li><a href="#" class="text-gray-400 hover:text-white transition">GDPR Compliance</a></li>
+       <li><a href="#" onclick="openCookieSettings(); return false;" class="text-gray-400 hover:text-white transition">Cookie Settings</a></li>
+       <li><a href="#" onclick="navigateTo('privacy'); return false;" class="text-gray-400 hover:text-white transition">GDPR Compliance</a></li>
       </ul>
      </div>
      <div>
@@ -928,6 +1196,97 @@
    </div>
   </footer>
   <script>
+        // Cookie Consent Management
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                // Show cookie banner after 1 second
+                setTimeout(() => {
+                    document.getElementById('cookieConsent').classList.remove('hidden');
+                }, 1000);
+            } else {
+                applyCookieSettings(JSON.parse(consent));
+            }
+        }
+
+        function acceptAllCookies() {
+            const consent = {
+                essential: true,
+                analytics: true,
+                marketing: true,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('cookieConsent', JSON.stringify(consent));
+            document.getElementById('cookieConsent').classList.add('hidden');
+            applyCookieSettings(consent);
+            showToast('All cookies accepted', 'success');
+        }
+
+        function acceptEssentialOnly() {
+            const consent = {
+                essential: true,
+                analytics: false,
+                marketing: false,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('cookieConsent', JSON.stringify(consent));
+            document.getElementById('cookieConsent').classList.add('hidden');
+            applyCookieSettings(consent);
+            showToast('Essential cookies only', 'info');
+        }
+
+        function openCookieSettings() {
+            document.getElementById('cookieConsent').classList.add('hidden');
+            document.getElementById('cookieSettingsModal').classList.remove('hidden');
+            
+            // Load current settings
+            const consent = JSON.parse(localStorage.getItem('cookieConsent') || '{"analytics":true,"marketing":false}');
+            document.getElementById('analyticsCookies').checked = consent.analytics;
+            document.getElementById('marketingCookies').checked = consent.marketing;
+        }
+
+        function closeCookieSettings() {
+            document.getElementById('cookieSettingsModal').classList.add('hidden');
+            
+            // Show banner again if no consent saved
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                document.getElementById('cookieConsent').classList.remove('hidden');
+            }
+        }
+
+        function saveCustomCookieSettings() {
+            const consent = {
+                essential: true,
+                analytics: document.getElementById('analyticsCookies').checked,
+                marketing: document.getElementById('marketingCookies').checked,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('cookieConsent', JSON.stringify(consent));
+            document.getElementById('cookieSettingsModal').classList.add('hidden');
+            applyCookieSettings(consent);
+            showToast('Cookie preferences saved', 'success');
+        }
+
+        function applyCookieSettings(consent) {
+            // In production, this would enable/disable tracking scripts
+            if (consent.analytics) {
+                // Enable Google Analytics
+                console.log('Analytics cookies enabled');
+            } else {
+                // Disable Google Analytics
+                console.log('Analytics cookies disabled');
+            }
+            
+            if (consent.marketing) {
+                // Enable marketing pixels
+                console.log('Marketing cookies enabled');
+            } else {
+                // Disable marketing pixels
+                console.log('Marketing cookies disabled');
+            }
+        }
+
         // Navigation
         function navigateTo(page) {
             // Hide all pages
@@ -942,7 +1301,8 @@
                 'features': 'featuresPage',
                 'pricing': 'pricingPage',
                 'about': 'aboutPage',
-                'contact': 'contactPage'
+                'contact': 'contactPage',
+                'privacy': 'privacyPage'
             };
             
             document.getElementById(pageMap[page]).classList.add('active');
@@ -972,6 +1332,9 @@
 
         // Toggle input fields based on search type
         document.addEventListener('DOMContentLoaded', () => {
+            // Check cookie consent on page load
+            checkCookieConsent();
+            
             const form = document.getElementById('verificationForm');
             if (form) {
                 document.querySelectorAll('input[name="searchType"]').forEach(radio => {
@@ -1264,6 +1627,214 @@
                             </div>
                         </div>
 
+                        <!-- Trust Score Engine -->
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Trust Score Analysis</h3>
+                            <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-6 border-2 border-blue-200">
+                                <div class="flex items-center justify-between mb-6">
+                                    <div>
+                                        <div class="text-sm text-gray-600 mb-1">Overall Trust Score</div>
+                                        <div class="flex items-center space-x-3">
+                                            <div class="text-5xl font-bold text-green-600" id="trustScoreValue">87</div>
+                                            <div>
+                                                <div class="text-lg font-bold text-gray-900">Excellent</div>
+                                                <div class="text-sm text-gray-600">High confidence</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="relative w-32 h-32">
+                                        <svg class="transform -rotate-90 w-32 h-32">
+                                            <circle cx="64" cy="64" r="56" stroke="#e5e7eb" stroke-width="12" fill="none"/>
+                                            <circle id="trustScoreCircle" cx="64" cy="64" r="56" stroke="#10b981" stroke-width="12" fill="none"
+                                                stroke-dasharray="351.86" stroke-dashoffset="45.74" stroke-linecap="round"
+                                                class="transition-all duration-1000"/>
+                                        </svg>
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <span class="text-2xl font-bold text-gray-900">87%</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Trust Factors -->
+                                <div class="space-y-3">
+                                    <div class="bg-white rounded-lg p-4">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div class="flex items-center space-x-2">
+                                                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                                </svg>
+                                                <span class="font-semibold text-gray-900">Official Registration</span>
+                                            </div>
+                                            <div class="flex items-center space-x-2">
+                                                <span class="text-sm font-bold text-green-600">+25</span>
+                                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                                    <div class="bg-green-600 h-2 rounded-full" style="width: 100%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-600">Property is officially registered with HM Land Registry since 1998</p>
+                                    </div>
+
+                                    <div class="bg-white rounded-lg p-4">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div class="flex items-center space-x-2">
+                                                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                                </svg>
+                                                <span class="font-semibold text-gray-900">Ownership Stability</span>
+                                            </div>
+                                            <div class="flex items-center space-x-2">
+                                                <span class="text-sm font-bold text-green-600">+20</span>
+                                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                                    <div class="bg-green-600 h-2 rounded-full" style="width: 80%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-600">Current owner for 6+ years with consistent registration history</p>
+                                    </div>
+
+                                    <div class="bg-white rounded-lg p-4">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div class="flex items-center space-x-2">
+                                                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                                </svg>
+                                                <span class="font-semibold text-gray-900">Price Consistency</span>
+                                            </div>
+                                            <div class="flex items-center space-x-2">
+                                                <span class="text-sm font-bold text-green-600">+18</span>
+                                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                                    <div class="bg-green-600 h-2 rounded-full" style="width: 72%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-600">Sales prices align with market trends, no suspicious discrepancies</p>
+                                    </div>
+
+                                    <div class="bg-white rounded-lg p-4">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div class="flex items-center space-x-2">
+                                                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                                </svg>
+                                                <span class="font-semibold text-gray-900">Transaction Frequency</span>
+                                            </div>
+                                            <div class="flex items-center space-x-2">
+                                                <span class="text-sm font-bold text-green-600">+14</span>
+                                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                                    <div class="bg-green-600 h-2 rounded-full" style="width: 56%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-600">Normal transaction frequency (4 sales over 26 years), not over-traded</p>
+                                    </div>
+
+                                    <div class="bg-white rounded-lg p-4">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div class="flex items-center space-x-2">
+                                                <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                                                </svg>
+                                                <span class="font-semibold text-gray-900">Address Verification</span>
+                                            </div>
+                                            <div class="flex items-center space-x-2">
+                                                <span class="text-sm font-bold text-blue-600">+10</span>
+                                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                                    <div class="bg-blue-600 h-2 rounded-full" style="width: 40%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-600">Owner address matches property address (owner-occupied)</p>
+                                    </div>
+                                </div>
+
+                                <!-- Risk Indicators -->
+                                <div class="mt-6 pt-6 border-t border-blue-200">
+                                    <h4 class="font-bold text-gray-900 mb-3 flex items-center">
+                                        <svg class="w-5 h-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        Risk Assessment: Low Risk
+                                    </h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                        <div class="bg-white rounded-lg p-3 text-center">
+                                            <div class="text-green-600 text-2xl mb-1">✓</div>
+                                            <div class="text-xs font-semibold text-gray-900">No Fraud Flags</div>
+                                            <div class="text-xs text-gray-600">Clean history</div>
+                                        </div>
+                                        <div class="bg-white rounded-lg p-3 text-center">
+                                            <div class="text-green-600 text-2xl mb-1">✓</div>
+                                            <div class="text-xs font-semibold text-gray-900">No Disputes</div>
+                                            <div class="text-xs text-gray-600">Clear title</div>
+                                        </div>
+                                        <div class="bg-white rounded-lg p-3 text-center">
+                                            <div class="text-green-600 text-2xl mb-1">✓</div>
+                                            <div class="text-xs font-semibold text-gray-900">Verified Owner</div>
+                                            <div class="text-xs text-gray-600">Identity confirmed</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- AI Insights -->
+                                <div class="mt-6 bg-white rounded-lg p-4">
+                                    <div class="flex items-start space-x-3">
+                                        <div class="flex-shrink-0 w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                            <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h5 class="font-bold text-gray-900 mb-2">AI-Powered Insights</h5>
+                                            <ul class="space-y-1 text-sm text-gray-700">
+                                                <li class="flex items-start">
+                                                    <span class="text-purple-600 mr-2">•</span>
+                                                    <span>Property has appreciated consistently above London market average (+359% vs +280% market avg)</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-purple-600 mr-2">•</span>
+                                                    <span>Owner-occupied status suggests long-term stability and lower investment risk</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-purple-600 mr-2">•</span>
+                                                    <span>Transaction intervals (6-7 years) indicate stable ownership patterns</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-purple-600 mr-2">•</span>
+                                                    <span>Freehold tenure provides maximum ownership security and investment value</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Score Breakdown -->
+                                <div class="mt-6 bg-white rounded-lg p-4">
+                                    <h5 class="font-bold text-gray-900 mb-3">Score Methodology</h5>
+                                    <div class="text-sm text-gray-600 space-y-2">
+                                        <p><strong>Trust Score Range:</strong> 0-100 (Higher is better)</p>
+                                        <div class="flex items-center space-x-4 text-xs">
+                                            <div class="flex items-center">
+                                                <div class="w-4 h-4 bg-red-500 rounded mr-1"></div>
+                                                <span>0-40 High Risk</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <div class="w-4 h-4 bg-yellow-500 rounded mr-1"></div>
+                                                <span>41-60 Medium</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <div class="w-4 h-4 bg-blue-500 rounded mr-1"></div>
+                                                <span>61-80 Good</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <div class="w-4 h-4 bg-green-500 rounded mr-1"></div>
+                                                <span>81-100 Excellent</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Price History -->
                         <div>
                             <h3 class="text-2xl font-bold text-gray-900 mb-4">Price Paid History</h3>
@@ -1525,5 +2096,5 @@ Data Sources: HM Land Registry, Companies House
             }, 4000);
         }
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0ebd73d68e914f',t:'MTc2MzU0NTE2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0edc7cf5b7914f',t:'MTc2MzU0NjQzNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
