@@ -1,0 +1,1529 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASSETRAZ UK - Property Verification Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        
+        .slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .property-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: white;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 500px;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="bg-gray-50"><!-- Header -->
+  <header class="gradient-bg text-white shadow-lg sticky top-0 z-40">
+   <div class="container mx-auto px-4 py-4">
+    <div class="flex items-center justify-between">
+     <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+      <svg class="w-10 h-10" fill="currentColor" viewbox="0 0 20 20"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
+      </svg>
+      <div>
+       <h1 class="text-2xl font-bold">ASSETRAZ UK</h1>
+       <p class="text-xs opacity-90">Property Verification Platform</p>
+      </div>
+     </div><!-- Desktop Navigation -->
+     <nav class="hidden md:flex items-center space-x-6"><a href="#" class="nav-link active hover:text-gray-200 transition" onclick="navigateTo('home'); return false;">Home</a> <a href="#" class="nav-link hover:text-gray-200 transition" onclick="navigateTo('verify'); return false;">Verify Property</a> <a href="#" class="nav-link hover:text-gray-200 transition" onclick="navigateTo('features'); return false;">Features</a> <a href="#" class="nav-link hover:text-gray-200 transition" onclick="navigateTo('pricing'); return false;">Pricing</a> <a href="#" class="nav-link hover:text-gray-200 transition" onclick="navigateTo('about'); return false;">About</a> <a href="#" class="nav-link hover:text-gray-200 transition" onclick="navigateTo('contact'); return false;">Contact</a> <button onclick="navigateTo('verify')" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition"> Get Started </button>
+     </nav><!-- Mobile Menu Button --> <button class="md:hidden" onclick="toggleMobileMenu()">
+      <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+      </svg></button>
+    </div>
+   </div>
+  </header><!-- Mobile Menu -->
+  <div id="mobileMenu" class="mobile-menu fixed inset-y-0 left-0 w-64 bg-white shadow-xl z-50 md:hidden">
+   <div class="p-4 gradient-bg text-white">
+    <div class="flex items-center justify-between">
+     <h2 class="text-xl font-bold">Menu</h2><button onclick="toggleMobileMenu()">
+      <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+      </svg></button>
+    </div>
+   </div>
+   <nav class="p-4 space-y-4"><a href="#" class="block text-gray-700 hover:text-purple-600 font-semibold" onclick="navigateTo('home'); toggleMobileMenu(); return false;">Home</a> <a href="#" class="block text-gray-700 hover:text-purple-600 font-semibold" onclick="navigateTo('verify'); toggleMobileMenu(); return false;">Verify Property</a> <a href="#" class="block text-gray-700 hover:text-purple-600 font-semibold" onclick="navigateTo('features'); toggleMobileMenu(); return false;">Features</a> <a href="#" class="block text-gray-700 hover:text-purple-600 font-semibold" onclick="navigateTo('pricing'); toggleMobileMenu(); return false;">Pricing</a> <a href="#" class="block text-gray-700 hover:text-purple-600 font-semibold" onclick="navigateTo('about'); toggleMobileMenu(); return false;">About</a> <a href="#" class="block text-gray-700 hover:text-purple-600 font-semibold" onclick="navigateTo('contact'); toggleMobileMenu(); return false;">Contact</a>
+   </nav>
+  </div><!-- Mobile Menu Overlay -->
+  <div id="mobileMenuOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden" onclick="toggleMobileMenu()"></div>
+  <main><!-- HOME PAGE -->
+   <div id="homePage" class="page active"><!-- Hero Section -->
+    <section class="hero-section text-white py-20">
+     <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center fade-in">
+       <h2 class="text-5xl md:text-6xl font-bold mb-6">Verify UK Property Ownership Instantly</h2>
+       <p class="text-xl md:text-2xl mb-8 opacity-90">Access official HM Land Registry data, Companies House records, and complete property history in seconds</p>
+       <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4"><button onclick="navigateTo('verify')" class="bg-white text-purple-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-lg"> Start Verification → </button> <button onclick="navigateTo('pricing')" class="bg-transparent border-2 border-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-purple-600 transition"> View Pricing </button>
+       </div><!-- Stats -->
+       <div class="grid grid-cols-3 gap-6 mt-16">
+        <div class="text-center">
+         <div class="text-4xl md:text-5xl font-bold mb-2">
+          1M+
+         </div>
+         <div class="text-sm md:text-base opacity-90">
+          Properties Verified
+         </div>
+        </div>
+        <div class="text-center">
+         <div class="text-4xl md:text-5xl font-bold mb-2">
+          99.9%
+         </div>
+         <div class="text-sm md:text-base opacity-90">
+          Accuracy Rate
+         </div>
+        </div>
+        <div class="text-center">
+         <div class="text-4xl md:text-5xl font-bold mb-2">
+          &lt;2s
+         </div>
+         <div class="text-sm md:text-base opacity-90">
+          Response Time
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- Features Overview -->
+    <section class="py-20 bg-white">
+     <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+       <h3 class="text-4xl font-bold text-gray-900 mb-4">Why Choose ASSETRAZ?</h3>
+       <p class="text-xl text-gray-600 max-w-2xl mx-auto">Comprehensive property verification powered by official UK government data sources</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+       <div class="property-card bg-white rounded-xl shadow-lg p-8 text-center">
+        <div class="feature-icon bg-blue-100 text-blue-600 mx-auto mb-6">
+         ⚡
+        </div>
+        <h4 class="text-2xl font-bold text-gray-900 mb-4">Instant Results</h4>
+        <p class="text-gray-600">Get comprehensive property reports in under 2 seconds. No waiting, no delays.</p>
+       </div>
+       <div class="property-card bg-white rounded-xl shadow-lg p-8 text-center">
+        <div class="feature-icon bg-green-100 text-green-600 mx-auto mb-6">
+         ✅
+        </div>
+        <h4 class="text-2xl font-bold text-gray-900 mb-4">Official Data</h4>
+        <p class="text-gray-600">Direct integration with HM Land Registry and Companies House for verified accuracy.</p>
+       </div>
+       <div class="property-card bg-white rounded-xl shadow-lg p-8 text-center">
+        <div class="feature-icon bg-purple-100 text-purple-600 mx-auto mb-6">
+         🔐
+        </div>
+        <h4 class="text-2xl font-bold text-gray-900 mb-4">Blockchain Certified</h4>
+        <p class="text-gray-600">Tamper-proof verification certificates with blockchain timestamps for legal assurance.</p>
+       </div>
+       <div class="property-card bg-white rounded-xl shadow-lg p-8 text-center">
+        <div class="feature-icon bg-yellow-100 text-yellow-600 mx-auto mb-6">
+         📊
+        </div>
+        <h4 class="text-2xl font-bold text-gray-900 mb-4">Complete History</h4>
+        <p class="text-gray-600">Access full price paid history, ownership transfers, and transaction timeline.</p>
+       </div>
+       <div class="property-card bg-white rounded-xl shadow-lg p-8 text-center">
+        <div class="feature-icon bg-red-100 text-red-600 mx-auto mb-6">
+         🏢
+        </div>
+        <h4 class="text-2xl font-bold text-gray-900 mb-4">Corporate Checks</h4>
+        <p class="text-gray-600">Verify company ownership with directors, PSC, and full company status details.</p>
+       </div>
+       <div class="property-card bg-white rounded-xl shadow-lg p-8 text-center">
+        <div class="feature-icon bg-indigo-100 text-indigo-600 mx-auto mb-6">
+         📈
+        </div>
+        <h4 class="text-2xl font-bold text-gray-900 mb-4">Market Analysis</h4>
+        <p class="text-gray-600">AI-powered valuation estimates with comparable properties and market trends.</p>
+       </div>
+      </div>
+     </div>
+    </section><!-- How It Works -->
+    <section class="py-20 bg-gray-50">
+     <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+       <h3 class="text-4xl font-bold text-gray-900 mb-4">How It Works</h3>
+       <p class="text-xl text-gray-600">Simple 3-step verification process</p>
+      </div>
+      <div class="max-w-4xl mx-auto">
+       <div class="space-y-12">
+        <div class="flex items-start space-x-6">
+         <div class="flex-shrink-0 w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">
+          1
+         </div>
+         <div>
+          <h4 class="text-2xl font-bold text-gray-900 mb-2">Enter Property Details</h4>
+          <p class="text-gray-600 text-lg">Search by title number, postcode, or full address. Our smart search finds properties instantly.</p>
+         </div>
+        </div>
+        <div class="flex items-start space-x-6">
+         <div class="flex-shrink-0 w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">
+          2
+         </div>
+         <div>
+          <h4 class="text-2xl font-bold text-gray-900 mb-2">Automated Verification</h4>
+          <p class="text-gray-600 text-lg">We query HM Land Registry, Companies House, and multiple databases simultaneously in real-time.</p>
+         </div>
+        </div>
+        <div class="flex items-start space-x-6">
+         <div class="flex-shrink-0 w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">
+          3
+         </div>
+         <div>
+          <h4 class="text-2xl font-bold text-gray-900 mb-2">Get Comprehensive Report</h4>
+          <p class="text-gray-600 text-lg">Download detailed PDF reports, blockchain certificates, and official documentation within seconds.</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- Trusted By Section -->
+    <section class="py-20 bg-white">
+     <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+       <h3 class="text-3xl font-bold text-gray-900 mb-4">Trusted By Industry Leaders</h3>
+       <p class="text-gray-600">Thousands of professionals rely on ASSETRAZ daily</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+       <div class="text-center">
+        <div class="text-4xl mb-2">
+         🏢
+        </div>
+        <div class="font-semibold text-gray-900">
+         Estate Agents
+        </div>
+        <div class="text-sm text-gray-600">
+         2,500+ firms
+        </div>
+       </div>
+       <div class="text-center">
+        <div class="text-4xl mb-2">
+         ⚖️
+        </div>
+        <div class="font-semibold text-gray-900">
+         Solicitors
+        </div>
+        <div class="text-sm text-gray-600">
+         1,800+ practices
+        </div>
+       </div>
+       <div class="text-center">
+        <div class="text-4xl mb-2">
+         🏦
+        </div>
+        <div class="font-semibold text-gray-900">
+         Lenders
+        </div>
+        <div class="text-sm text-gray-600">
+         450+ institutions
+        </div>
+       </div>
+       <div class="text-center">
+        <div class="text-4xl mb-2">
+         👤
+        </div>
+        <div class="font-semibold text-gray-900">
+         Individuals
+        </div>
+        <div class="text-sm text-gray-600">
+         50,000+ users
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- CTA Section -->
+    <section class="py-20 gradient-bg text-white">
+     <div class="container mx-auto px-4 text-center">
+      <h3 class="text-4xl font-bold mb-6">Ready to Verify Your Property?</h3>
+      <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">Join thousands of satisfied customers who trust ASSETRAZ for accurate, instant property verification</p><button onclick="navigateTo('verify')" class="bg-white text-purple-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-lg"> Start Free Verification → </button>
+     </div>
+    </section>
+   </div><!-- VERIFY PROPERTY PAGE -->
+   <div id="verifyPage" class="page">
+    <div class="container mx-auto px-4 py-12">
+     <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+       <h2 class="text-4xl font-bold text-gray-900 mb-4">Property Verification</h2>
+       <p class="text-xl text-gray-600">Enter property details to begin instant verification</p>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-8 property-card">
+       <form id="verificationForm" class="space-y-6"><!-- Search Type Selection -->
+        <div><label class="block text-sm font-semibold text-gray-700 mb-3"> Verification Method </label>
+         <div class="grid grid-cols-1 md:grid-cols-3 gap-4"><label class="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-blue-500 transition"> <input type="radio" name="searchType" value="title" checked class="mr-3">
+           <div>
+            <div class="font-semibold">
+             Title Number
+            </div>
+            <div class="text-xs text-gray-500">
+             e.g., DN123456
+            </div>
+           </div></label> <label class="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-blue-500 transition"> <input type="radio" name="searchType" value="postcode" class="mr-3">
+           <div>
+            <div class="font-semibold">
+             Postcode
+            </div>
+            <div class="text-xs text-gray-500">
+             e.g., SW1A 1AA
+            </div>
+           </div></label> <label class="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-blue-500 transition"> <input type="radio" name="searchType" value="address" class="mr-3">
+           <div>
+            <div class="font-semibold">
+             Full Address
+            </div>
+            <div class="text-xs text-gray-500">
+             Complete address
+            </div>
+           </div></label>
+         </div>
+        </div><!-- Title Number Input -->
+        <div id="titleInput" class="space-y-4">
+         <div><label for="titleNumber" class="block text-sm font-semibold text-gray-700 mb-2"> Title Number </label> <input type="text" id="titleNumber" name="titleNumber" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="e.g., DN123456">
+         </div>
+        </div><!-- Postcode Input -->
+        <div id="postcodeInput" class="hidden space-y-4">
+         <div><label for="postcode" class="block text-sm font-semibold text-gray-700 mb-2"> Postcode </label> <input type="text" id="postcode" name="postcode" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="e.g., SW1A 1AA">
+         </div>
+        </div><!-- Address Input -->
+        <div id="addressInput" class="hidden space-y-4">
+         <div><label for="addressLine1" class="block text-sm font-semibold text-gray-700 mb-2"> Address Line 1 </label> <input type="text" id="addressLine1" name="addressLine1" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Street address">
+         </div>
+         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div><label for="city" class="block text-sm font-semibold text-gray-700 mb-2"> City </label> <input type="text" id="city" name="city" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="City">
+          </div>
+          <div><label for="addressPostcode" class="block text-sm font-semibold text-gray-700 mb-2"> Postcode </label> <input type="text" id="addressPostcode" name="addressPostcode" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Postcode">
+          </div>
+         </div>
+        </div><!-- Verification Options -->
+        <div class="bg-gray-50 p-4 rounded-lg"><label class="block text-sm font-semibold text-gray-700 mb-3"> Include Additional Checks </label>
+         <div class="space-y-2"><label class="flex items-center"> <input type="checkbox" name="includePriceHistory" checked class="mr-2"> <span class="text-sm">Price Paid History (FREE)</span> </label> <label class="flex items-center"> <input type="checkbox" name="includeLocalCharges" class="mr-2"> <span class="text-sm">Local Land Charges (£3)</span> </label> <label class="flex items-center"> <input type="checkbox" name="includeTitlePlan" class="mr-2"> <span class="text-sm">Title Plan/Map (£3)</span> </label> <label class="flex items-center"> <input type="checkbox" name="includeOfficialCopy" class="mr-2"> <span class="text-sm">Official Copy of Register (£3)</span> </label>
+         </div>
+        </div><!-- Submit Button --> <button type="submit" id="verifyButton" class="w-full bg-blue-600 text-white py-4 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center space-x-2">
+         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span>Verify Property</span> </button>
+       </form><!-- Demo Note -->
+       <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+        <div class="flex items-start">
+         <svg class="w-5 h-5 text-yellow-600 mr-2 mt-0.5" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+         </svg>
+         <div class="text-sm text-yellow-800"><strong>Demo Mode:</strong> This demonstrates the interface. In production, you'll need official API keys from HM Land Registry and Companies House.
+         </div>
+        </div>
+       </div>
+      </div><!-- Results Section -->
+      <div id="resultsSection" class="hidden mt-8">
+       <div id="resultsContainer"></div>
+      </div>
+     </div>
+    </div>
+   </div><!-- FEATURES PAGE -->
+   <div id="featuresPage" class="page">
+    <div class="container mx-auto px-4 py-12">
+     <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Comprehensive Features</h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">Everything you need for complete property verification and due diligence</p>
+     </div>
+     <div class="max-w-6xl mx-auto space-y-12"><!-- Feature 1 -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+       <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="p-8 md:p-12">
+         <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6"><span class="text-4xl">📋</span>
+         </div>
+         <h3 class="text-3xl font-bold text-gray-900 mb-4">Title Information</h3>
+         <p class="text-gray-600 mb-6">Complete property ownership records from HM Land Registry including proprietor details, tenure type, and full registration history.</p>
+         <ul class="space-y-3">
+          <li class="flex items-start">
+           <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span class="text-gray-700">Official title number and registration date</span></li>
+          <li class="flex items-start">
+           <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span class="text-gray-700">Current proprietor name and address</span></li>
+          <li class="flex items-start">
+           <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span class="text-gray-700">Freehold or leasehold status</span></li>
+         </ul>
+        </div>
+        <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-8 md:p-12 flex items-center justify-center">
+         <div class="text-center">
+          <div class="text-8xl mb-4">
+           🏠
+          </div>
+          <div class="text-2xl font-bold text-gray-900">
+           Instant Access
+          </div>
+          <div class="text-gray-600">
+           to Official Records
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Feature 2 -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+       <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="bg-gradient-to-br from-green-50 to-blue-50 p-8 md:p-12 flex items-center justify-center order-2 md:order-1">
+         <div class="text-center">
+          <div class="text-8xl mb-4">
+           💰
+          </div>
+          <div class="text-2xl font-bold text-gray-900">
+           Complete History
+          </div>
+          <div class="text-gray-600">
+           All Transactions
+          </div>
+         </div>
+        </div>
+        <div class="p-8 md:p-12 order-1 md:order-2">
+         <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mb-6"><span class="text-4xl">📊</span>
+         </div>
+         <h3 class="text-3xl font-bold text-gray-900 mb-4">Price Paid History</h3>
+         <p class="text-gray-600 mb-6">Access complete transaction history with prices paid, dates, and property types from the official Land Registry database.</p>
+         <ul class="space-y-3">
+          <li class="flex items-start">
+           <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span class="text-gray-700">All historical sale prices and dates</span></li>
+          <li class="flex items-start">
+           <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span class="text-gray-700">Price appreciation analytics</span></li>
+          <li class="flex items-start">
+           <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span class="text-gray-700">Market comparison data</span></li>
+         </ul>
+        </div>
+       </div>
+      </div><!-- Feature 3 -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+       <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="p-8 md:p-12">
+         <div class="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mb-6"><span class="text-4xl">🏢</span>
+         </div>
+         <h3 class="text-3xl font-bold text-gray-900 mb-4">Company Ownership</h3>
+         <p class="text-gray-600 mb-6">Verify corporate owners through Companies House API including directors, persons with significant control (PSC), and company status.</p>
+         <ul class="space-y-3">
+          <li class="flex items-start">
+           <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span class="text-gray-700">Company registration details</span></li>
+          <li class="flex items-start">
+           <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span class="text-gray-700">Directors and PSC information</span></li>
+          <li class="flex items-start">
+           <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span class="text-gray-700">Company status and filing history</span></li>
+         </ul>
+        </div>
+        <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-8 md:p-12 flex items-center justify-center">
+         <div class="text-center">
+          <div class="text-8xl mb-4">
+           🔍
+          </div>
+          <div class="text-2xl font-bold text-gray-900">
+           Deep Verification
+          </div>
+          <div class="text-gray-600">
+           Corporate Ownership
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Feature 4 -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+       <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="bg-gradient-to-br from-yellow-50 to-orange-50 p-8 md:p-12 flex items-center justify-center order-2 md:order-1">
+         <div class="text-center">
+          <div class="text-8xl mb-4">
+           ⛓️
+          </div>
+          <div class="text-2xl font-bold text-gray-900">
+           Tamper-Proof
+          </div>
+          <div class="text-gray-600">
+           Legal Assurance
+          </div>
+         </div>
+        </div>
+        <div class="p-8 md:p-12 order-1 md:order-2">
+         <div class="w-16 h-16 bg-indigo-100 rounded-xl flex items-center justify-center mb-6"><span class="text-4xl">🔐</span>
+         </div>
+         <h3 class="text-3xl font-bold text-gray-900 mb-4">Blockchain Certificates</h3>
+         <p class="text-gray-600 mb-6">Generate tamper-proof verification certificates with blockchain timestamps for legal assurance and audit trails.</p>
+         <ul class="space-y-3">
+          <li class="flex items-start">
+           <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span class="text-gray-700">Cryptographic proof of verification</span></li>
+          <li class="flex items-start">
+           <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span class="text-gray-700">Immutable timestamp records</span></li>
+          <li class="flex items-start">
+           <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg><span class="text-gray-700">Admissible as legal evidence</span></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- PRICING PAGE -->
+   <div id="pricingPage" class="page">
+    <div class="container mx-auto px-4 py-12">
+     <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Simple, Transparent Pricing</h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">Choose the plan that fits your needs. No hidden fees.</p>
+     </div>
+     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"><!-- Basic Plan -->
+      <div class="bg-white rounded-xl shadow-lg p-8 property-card border-2 border-gray-200">
+       <div class="text-center mb-6">
+        <h4 class="text-2xl font-bold text-gray-900 mb-2">Basic Search</h4>
+        <div class="text-5xl font-bold text-blue-600 mb-2">
+         £3
+        </div>
+        <div class="text-sm text-gray-600">
+         per property check
+        </div>
+       </div>
+       <ul class="space-y-3 mb-8">
+        <li class="flex items-start">
+         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span class="text-gray-700">Title Number &amp; Proprietor</span></li>
+        <li class="flex items-start">
+         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span class="text-gray-700">Tenure Information</span></li>
+        <li class="flex items-start">
+         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span class="text-gray-700">Price Paid History (FREE)</span></li>
+        <li class="flex items-start">
+         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span class="text-gray-700">Basic PDF Report</span></li>
+       </ul><button onclick="navigateTo('verify')" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"> Get Started </button>
+      </div><!-- Professional Plan -->
+      <div class="bg-white rounded-xl shadow-lg p-8 property-card border-4 border-purple-500 relative transform md:scale-105">
+       <div class="absolute -top-4 left-1/2 transform -translate-x-1/2"><span class="bg-purple-500 text-white px-4 py-1 rounded-full text-sm font-bold">MOST POPULAR</span>
+       </div>
+       <div class="text-center mb-6">
+        <h4 class="text-2xl font-bold text-gray-900 mb-2">Professional</h4>
+        <div class="text-5xl font-bold text-purple-600 mb-2">
+         £9
+        </div>
+        <div class="text-sm text-gray-600">
+         per property check
+        </div>
+       </div>
+       <ul class="space-y-3 mb-8">
+        <li class="flex items-start">
+         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span class="text-gray-700"><strong>Everything in Basic</strong></span></li>
+        <li class="flex items-start">
+         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span class="text-gray-700">Official Title Plan with Maps</span></li>
+        <li class="flex items-start">
+         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span class="text-gray-700">Local Land Charges</span></li>
+        <li class="flex items-start">
+         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span class="text-gray-700">Companies House Data</span></li>
+        <li class="flex items-start">
+         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span class="text-gray-700">Blockchain Certificate</span></li>
+       </ul><button onclick="navigateTo('verify')" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition"> Get Started </button>
+      </div><!-- Enterprise Plan -->
+      <div class="bg-white rounded-xl shadow-lg p-8 property-card border-2 border-gray-200">
+       <div class="text-center mb-6">
+        <h4 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h4>
+        <div class="text-5xl font-bold text-gray-900 mb-2">
+         Custom
+        </div>
+        <div class="text-sm text-gray-600">
+         volume pricing
+        </div>
+       </div>
+       <ul class="space-y-3 mb-8">
+        <li class="flex items-start">
+         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span class="text-gray-700"><strong>Everything in Professional</strong></span></li>
+        <li class="flex items-start">
+         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span class="text-gray-700">API Access</span></li>
+        <li class="flex items-start">
+         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span class="text-gray-700">Bulk Processing</span></li>
+        <li class="flex items-start">
+         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span class="text-gray-700">White-label Options</span></li>
+        <li class="flex items-start">
+         <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span class="text-gray-700">Dedicated Support</span></li>
+       </ul><button onclick="navigateTo('contact')" class="w-full bg-gray-800 text-white py-3 rounded-lg font-semibold hover:bg-gray-900 transition"> Contact Sales </button>
+      </div>
+     </div><!-- FAQ Section -->
+     <div class="max-w-3xl mx-auto">
+      <h3 class="text-3xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h3>
+      <div class="space-y-4">
+       <details class="bg-white rounded-lg shadow-md p-6"><summary class="font-semibold text-lg text-gray-900 cursor-pointer">What payment methods do you accept?</summary>
+        <p class="mt-4 text-gray-600">We accept all major credit cards (Visa, Mastercard, American Express), debit cards, and bank transfers for enterprise accounts.</p>
+       </details>
+       <details class="bg-white rounded-lg shadow-md p-6"><summary class="font-semibold text-lg text-gray-900 cursor-pointer">Can I try before I buy?</summary>
+        <p class="mt-4 text-gray-600">Yes! We offer a free demo search that shows you the interface and report format. Contact us for a trial account with credits.</p>
+       </details>
+       <details class="bg-white rounded-lg shadow-md p-6"><summary class="font-semibold text-lg text-gray-900 cursor-pointer">Are there volume discounts?</summary>
+        <p class="mt-4 text-gray-600">Absolutely. Enterprise plans include significant volume discounts. Contact our sales team for a custom quote based on your needs.</p>
+       </details>
+       <details class="bg-white rounded-lg shadow-md p-6"><summary class="font-semibold text-lg text-gray-900 cursor-pointer">How accurate is the data?</summary>
+        <p class="mt-4 text-gray-600">Our data comes directly from HM Land Registry and Companies House, ensuring 99.9% accuracy. All reports include timestamps and source references.</p>
+       </details>
+      </div>
+     </div>
+    </div>
+   </div><!-- ABOUT PAGE -->
+   <div id="aboutPage" class="page">
+    <div class="container mx-auto px-4 py-12"><!-- Hero -->
+     <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">About ASSETRAZ UK</h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">We're revolutionizing property verification in the UK with instant, accurate, and blockchain-certified reports</p>
+     </div><!-- Mission -->
+     <div class="max-w-4xl mx-auto mb-16">
+      <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-8 md:p-12">
+       <h3 class="text-3xl font-bold text-gray-900 mb-6 text-center">Our Mission</h3>
+       <p class="text-lg text-gray-700 text-center leading-relaxed">To make property verification accessible, transparent, and trustworthy for everyone. We believe that comprehensive property information should be instant, affordable, and backed by cutting-edge technology.</p>
+      </div>
+     </div><!-- Values -->
+     <div class="max-w-6xl mx-auto mb-16">
+      <h3 class="text-3xl font-bold text-gray-900 mb-8 text-center">Our Values</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+       <div class="text-center">
+        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-4xl">🎯</span>
+        </div>
+        <h4 class="text-xl font-bold text-gray-900 mb-3">Accuracy First</h4>
+        <p class="text-gray-600">We only use official government sources to ensure the highest data accuracy and reliability.</p>
+       </div>
+       <div class="text-center">
+        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-4xl">⚡</span>
+        </div>
+        <h4 class="text-xl font-bold text-gray-900 mb-3">Speed Matters</h4>
+        <p class="text-gray-600">Time is money. Our platform delivers comprehensive reports in under 2 seconds.</p>
+       </div>
+       <div class="text-center">
+        <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-4xl">🔒</span>
+        </div>
+        <h4 class="text-xl font-bold text-gray-900 mb-3">Security Always</h4>
+        <p class="text-gray-600">Your data is encrypted and protected. Blockchain certificates ensure tamper-proof records.</p>
+       </div>
+      </div>
+     </div><!-- Stats -->
+     <div class="max-w-6xl mx-auto mb-16">
+      <h3 class="text-3xl font-bold text-gray-900 mb-8 text-center">By The Numbers</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+       <div class="stat-card text-center">
+        <div class="text-4xl font-bold text-blue-600 mb-2">
+         1M+
+        </div>
+        <div class="text-gray-600">
+         Properties Verified
+        </div>
+       </div>
+       <div class="stat-card text-center">
+        <div class="text-4xl font-bold text-green-600 mb-2">
+         5,000+
+        </div>
+        <div class="text-gray-600">
+         Active Users
+        </div>
+       </div>
+       <div class="stat-card text-center">
+        <div class="text-4xl font-bold text-purple-600 mb-2">
+         99.9%
+        </div>
+        <div class="text-gray-600">
+         Uptime
+        </div>
+       </div>
+       <div class="stat-card text-center">
+        <div class="text-4xl font-bold text-yellow-600 mb-2">
+         &lt;2s
+        </div>
+        <div class="text-gray-600">
+         Avg Response
+        </div>
+       </div>
+      </div>
+     </div><!-- Technology -->
+     <div class="max-w-4xl mx-auto mb-16">
+      <h3 class="text-3xl font-bold text-gray-900 mb-8 text-center">Our Technology</h3>
+      <div class="bg-white rounded-xl shadow-lg p-8">
+       <div class="space-y-6">
+        <div class="flex items-start">
+         <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4"><span class="text-2xl">🔗</span>
+         </div>
+         <div>
+          <h4 class="text-xl font-bold text-gray-900 mb-2">Direct API Integration</h4>
+          <p class="text-gray-600">Real-time connections to HM Land Registry and Companies House for instant, official data access.</p>
+         </div>
+        </div>
+        <div class="flex items-start">
+         <div class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4"><span class="text-2xl">⛓️</span>
+         </div>
+         <div>
+          <h4 class="text-xl font-bold text-gray-900 mb-2">Blockchain Certification</h4>
+          <p class="text-gray-600">Every verification is timestamped on the Ethereum blockchain for immutable proof and legal validity.</p>
+         </div>
+        </div>
+        <div class="flex items-start">
+         <div class="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4"><span class="text-2xl">  </span>
+         </div>
+         <div>
+          <h4 class="text-xl font-bold text-gray-900 mb-2">AI-Powered Analysis</h4>
+          <p class="text-gray-600">Machine learning algorithms analyze property valuations, market trends, and risk factors automatically.</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Team -->
+     <div class="max-w-4xl mx-auto">
+      <h3 class="text-3xl font-bold text-gray-900 mb-8 text-center">Our Team</h3>
+      <div class="text-center">
+       <div class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl p-8">
+        <p class="text-lg text-gray-700 leading-relaxed">ASSETRAZ UK is built by a team of property professionals, software engineers, and blockchain experts dedicated to transforming the UK property market. With decades of combined experience in conveyancing, real estate, and technology, we understand the challenges of property verification and have created the solution.</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- CONTACT PAGE -->
+   <div id="contactPage" class="page">
+    <div class="container mx-auto px-4 py-12">
+     <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+       <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Get In Touch</h2>
+       <p class="text-xl text-gray-600">Have questions? We're here to help. Reach out to our team anytime.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8"><!-- Contact Form -->
+       <div class="bg-white rounded-xl shadow-lg p-8">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
+        <form id="contactForm" class="space-y-4">
+         <div><label for="contactName" class="block text-sm font-semibold text-gray-700 mb-2"> Full Name </label> <input type="text" id="contactName" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="John Smith" required>
+         </div>
+         <div><label for="contactEmail" class="block text-sm font-semibold text-gray-700 mb-2"> Email Address </label> <input type="email" id="contactEmail" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="john@example.com" required>
+         </div>
+         <div><label for="contactPhone" class="block text-sm font-semibold text-gray-700 mb-2"> Phone Number (Optional) </label> <input type="tel" id="contactPhone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="07123 456789">
+         </div>
+         <div><label for="contactSubject" class="block text-sm font-semibold text-gray-700 mb-2"> Subject </label> <select id="contactSubject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required> <option value="">Select a subject</option> <option value="general">General Inquiry</option> <option value="sales">Sales &amp; Pricing</option> <option value="support">Technical Support</option> <option value="partnership">Partnership Opportunities</option> <option value="api">API Access</option> <option value="other">Other</option> </select>
+         </div>
+         <div><label for="contactMessage" class="block text-sm font-semibold text-gray-700 mb-2"> Message </label> <textarea id="contactMessage" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Tell us how we can help..." required></textarea>
+         </div><button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"> Send Message </button>
+        </form>
+       </div><!-- Contact Information -->
+       <div class="space-y-6">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+         <h3 class="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+         <div class="space-y-4">
+          <div class="flex items-start">
+           <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+            <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewbox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /> <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+            </svg>
+           </div>
+           <div>
+            <div class="font-semibold text-gray-900">
+             Email
+            </div>
+            <div class="text-gray-600">
+             info@assetraz.co.uk
+            </div>
+           </div>
+          </div>
+          <div class="flex items-start">
+           <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+            <svg class="w-5 h-5 text-green-600" fill="currentColor" viewbox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+            </svg>
+           </div>
+           <div>
+            <div class="font-semibold text-gray-900">
+             Phone
+            </div>
+            <div class="text-gray-600">
+             020 1234 5678
+            </div>
+           </div>
+          </div>
+          <div class="flex items-start">
+           <div class="flex-shrink-0 w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+            <svg class="w-5 h-5 text-purple-600" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+            </svg>
+           </div>
+           <div>
+            <div class="font-semibold text-gray-900">
+             Address
+            </div>
+            <div class="text-gray-600">
+             123 Property Lane<br>
+              London, UK<br>
+              SW1A 1AA
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-8">
+         <h4 class="text-xl font-bold text-gray-900 mb-4">Business Hours</h4>
+         <div class="space-y-2 text-gray-700">
+          <div class="flex justify-between"><span>Monday - Friday:</span> <span class="font-semibold">9:00 AM - 6:00 PM</span>
+          </div>
+          <div class="flex justify-between"><span>Saturday:</span> <span class="font-semibold">10:00 AM - 4:00 PM</span>
+          </div>
+          <div class="flex justify-between"><span>Sunday:</span> <span class="font-semibold">Closed</span>
+          </div>
+         </div>
+         <div class="mt-4 pt-4 border-t border-blue-200">
+          <p class="text-sm text-gray-600"><strong>24/7 Service:</strong> Our platform is available around the clock for instant property verification.</p>
+         </div>
+        </div>
+        <div class="bg-white rounded-xl shadow-lg p-8">
+         <h4 class="text-xl font-bold text-gray-900 mb-4">Follow Us</h4>
+         <div class="flex space-x-4"><a href="#" class="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center hover:bg-blue-700 transition"> <span class="text-xl">𝕏</span> </a> <a href="#" class="w-12 h-12 bg-blue-700 text-white rounded-lg flex items-center justify-center hover:bg-blue-800 transition"> <span class="text-xl">in</span> </a> <a href="#" class="w-12 h-12 bg-gray-800 text-white rounded-lg flex items-center justify-center hover:bg-gray-900 transition"> <span class="text-xl">▶</span> </a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </main><!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+   <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+     <div>
+      <h4 class="text-xl font-bold mb-4">ASSETRAZ UK</h4>
+      <p class="text-gray-400 text-sm">Professional property verification powered by official UK government APIs.</p>
+     </div>
+     <div>
+      <h5 class="font-bold mb-4">Quick Links</h5>
+      <ul class="space-y-2 text-sm">
+       <li><a href="#" onclick="navigateTo('home'); return false;" class="text-gray-400 hover:text-white transition">Home</a></li>
+       <li><a href="#" onclick="navigateTo('verify'); return false;" class="text-gray-400 hover:text-white transition">Verify Property</a></li>
+       <li><a href="#" onclick="navigateTo('features'); return false;" class="text-gray-400 hover:text-white transition">Features</a></li>
+       <li><a href="#" onclick="navigateTo('pricing'); return false;" class="text-gray-400 hover:text-white transition">Pricing</a></li>
+      </ul>
+     </div>
+     <div>
+      <h5 class="font-bold mb-4">Legal</h5>
+      <ul class="space-y-2 text-sm">
+       <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+       <li><a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+       <li><a href="#" class="text-gray-400 hover:text-white transition">Cookie Policy</a></li>
+       <li><a href="#" class="text-gray-400 hover:text-white transition">GDPR Compliance</a></li>
+      </ul>
+     </div>
+     <div>
+      <h5 class="font-bold mb-4">Contact</h5>
+      <ul class="space-y-2 text-sm text-gray-400">
+       <li>info@assetraz.co.uk</li>
+       <li>020 1234 5678</li>
+       <li>London, UK</li>
+      </ul>
+     </div>
+    </div>
+    <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
+     <p>© 2024 ASSETRAZ UK. All rights reserved.</p>
+     <p class="mt-2">HM Land Registry Data © Crown copyright and database rights 2024</p>
+    </div>
+   </div>
+  </footer>
+  <script>
+        // Navigation
+        function navigateTo(page) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => {
+                p.classList.remove('active');
+            });
+            
+            // Show selected page
+            const pageMap = {
+                'home': 'homePage',
+                'verify': 'verifyPage',
+                'features': 'featuresPage',
+                'pricing': 'pricingPage',
+                'about': 'aboutPage',
+                'contact': 'contactPage'
+            };
+            
+            document.getElementById(pageMap[page]).classList.add('active');
+            
+            // Update nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            
+            menu.classList.toggle('open');
+            
+            if (menu.classList.contains('open')) {
+                overlay.classList.remove('hidden');
+            } else {
+                overlay.classList.add('hidden');
+            }
+        }
+
+        // Toggle input fields based on search type
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('verificationForm');
+            if (form) {
+                document.querySelectorAll('input[name="searchType"]').forEach(radio => {
+                    radio.addEventListener('change', (e) => {
+                        document.getElementById('titleInput').classList.add('hidden');
+                        document.getElementById('postcodeInput').classList.add('hidden');
+                        document.getElementById('addressInput').classList.add('hidden');
+                        
+                        if (e.target.value === 'title') {
+                            document.getElementById('titleInput').classList.remove('hidden');
+                        } else if (e.target.value === 'postcode') {
+                            document.getElementById('postcodeInput').classList.remove('hidden');
+                        } else if (e.target.value === 'address') {
+                            document.getElementById('addressInput').classList.remove('hidden');
+                        }
+                    });
+                });
+
+                // Form submission
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    handleVerification();
+                });
+            }
+
+            // Contact form
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    showToast('Thank you for your message! We\'ll get back to you soon.', 'success');
+                    contactForm.reset();
+                });
+            }
+        });
+
+        // Handle verification
+        function handleVerification() {
+            const button = document.getElementById('verifyButton');
+            const originalContent = button.innerHTML;
+            const searchType = document.querySelector('input[name="searchType"]:checked').value;
+            
+            // Show loading state
+            button.disabled = true;
+            button.innerHTML = '<div class="spinner mx-auto"></div>';
+            
+            // Simulate API call
+            setTimeout(() => {
+                button.disabled = false;
+                button.innerHTML = originalContent;
+                
+                // For postcode search, show property selection first
+                if (searchType === 'postcode') {
+                    const postcode = document.getElementById('postcode').value.trim();
+                    if (!postcode) {
+                        showToast('Please enter a postcode', 'error');
+                        return;
+                    }
+                    displayPropertySelection(postcode);
+                    document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    showToast('Found properties at this postcode', 'success');
+                } else {
+                    // For title number or address, show results directly
+                    displayResults();
+                    document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    showToast('Property verification complete!', 'success');
+                }
+            }, 2000);
+        }
+        
+        // Display property selection for postcode search
+        function displayPropertySelection(postcode) {
+            const resultsSection = document.getElementById('resultsSection');
+            const resultsContainer = document.getElementById('resultsContainer');
+            
+            // Sample properties at this postcode (in production, from HM Land Registry API)
+            const properties = [
+                {
+                    titleNumber: 'DN123456',
+                    address: 'Flat 1, 123 Example Street',
+                    tenure: 'Leasehold',
+                    proprietor: 'John Smith',
+                    lastSalePrice: '£850,000',
+                    lastSaleDate: '2018'
+                },
+                {
+                    titleNumber: 'DN123457',
+                    address: 'Flat 2, 123 Example Street',
+                    tenure: 'Leasehold',
+                    proprietor: 'Sarah Johnson',
+                    lastSalePrice: '£795,000',
+                    lastSaleDate: '2020'
+                },
+                {
+                    titleNumber: 'DN123458',
+                    address: 'Flat 3, 123 Example Street',
+                    tenure: 'Leasehold',
+                    proprietor: 'ABC Properties Ltd',
+                    lastSalePrice: '£825,000',
+                    lastSaleDate: '2019'
+                },
+                {
+                    titleNumber: 'DN123459',
+                    address: '123A Example Street',
+                    tenure: 'Freehold',
+                    proprietor: 'Michael Brown',
+                    lastSalePrice: '£1,250,000',
+                    lastSaleDate: '2021'
+                }
+            ];
+            
+            resultsContainer.innerHTML = `
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                    <div class="bg-blue-600 text-white px-6 py-4">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                            </svg>
+                            <div>
+                                <div class="text-xl font-bold">Properties Found</div>
+                                <div class="text-sm opacity-90">Postcode: ${postcode.toUpperCase()}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-6">
+                            We found ${properties.length} properties registered at this postcode. Select a property to view full verification details:
+                        </p>
+                        
+                        <div class="space-y-4">
+                            ${properties.map((property, index) => `
+                                <div class="border-2 border-gray-200 rounded-lg p-5 hover:border-blue-500 hover:shadow-md transition cursor-pointer property-card" onclick="selectProperty('${property.titleNumber}')">
+                                    <div class="flex items-start justify-between">
+                                        <div class="flex-1">
+                                            <div class="flex items-center space-x-3 mb-3">
+                                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                                    <span class="text-xl">${index === 3 ? '🏠' : '🏢'}</span>
+                                                </div>
+                                                <div>
+                                                    <h4 class="text-lg font-bold text-gray-900">${property.address}</h4>
+                                                    <p class="text-sm text-gray-500">Title: ${property.titleNumber}</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                                <div>
+                                                    <div class="text-xs text-gray-500">Tenure</div>
+                                                    <div class="text-sm font-semibold text-gray-900">${property.tenure}</div>
+                                                </div>
+                                                <div>
+                                                    <div class="text-xs text-gray-500">Owner</div>
+                                                    <div class="text-sm font-semibold text-gray-900">${property.proprietor}</div>
+                                                </div>
+                                                <div>
+                                                    <div class="text-xs text-gray-500">Last Sale</div>
+                                                    <div class="text-sm font-semibold text-gray-900">${property.lastSalePrice}</div>
+                                                </div>
+                                                <div>
+                                                    <div class="text-xs text-gray-500">Year</div>
+                                                    <div class="text-sm font-semibold text-gray-900">${property.lastSaleDate}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="ml-4">
+                                            <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        
+                        <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <div class="flex items-start">
+                                <svg class="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                                </svg>
+                                <div class="text-sm text-gray-700">
+                                    <strong>Postcode Verification:</strong> Click any property above to see complete verification details including full price history, ownership records, and blockchain certificate.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            resultsSection.classList.remove('hidden');
+        }
+        
+        // Select property from postcode search
+        function selectProperty(titleNumber) {
+            showToast('Loading property details...', 'info');
+            
+            // Show loading briefly
+            setTimeout(() => {
+                displayResults(titleNumber);
+                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                showToast('Property verification complete!', 'success');
+            }, 1000);
+        }
+
+        // Display verification results
+        function displayResults() {
+            const resultsSection = document.getElementById('resultsSection');
+            const resultsContainer = document.getElementById('resultsContainer');
+            
+            // ========================================
+            // HERE IS ALL THE DEMO DATA! 📊
+            // This data appears when you click "Verify Property"
+            // ========================================
+            const propertyData = {
+                titleNumber: 'DN123456',
+                address: '123 Example Street, London, SW1A 1AA',
+                tenure: 'Freehold',
+                proprietor: 'John Smith',
+                proprietorAddress: '123 Example Street, London, SW1A 1AA',
+                registrationDate: '15 March 2018',
+                priceHistory: [
+                    { date: '15 March 2018', price: '£850,000', type: 'Transfer' },
+                    { date: '22 August 2012', price: '£625,000', type: 'Transfer' },
+                    { date: '10 June 2005', price: '£425,000', type: 'Transfer' },
+                    { date: '03 January 1998', price: '£185,000', type: 'Transfer' }
+                ],
+                companyInfo: null,
+                verificationId: 'VER-' + Date.now(),
+                timestamp: new Date().toLocaleString('en-GB'),
+                blockchainHash: '0x' + Math.random().toString(16).substr(2, 64)
+            };
+            
+            resultsContainer.innerHTML = `
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+                    <!-- Verification Badge -->
+                    <div class="bg-green-600 text-white px-6 py-4 flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <div>
+                                <div class="text-xl font-bold">Property Verified</div>
+                                <div class="text-sm opacity-90">Verification ID: ${propertyData.verificationId}</div>
+                            </div>
+                        </div>
+                        <div class="text-right text-sm">
+                            <div class="opacity-90">Verified on</div>
+                            <div class="font-semibold">${propertyData.timestamp}</div>
+                        </div>
+                    </div>
+
+                    <!-- Property Details -->
+                    <div class="p-6 space-y-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Property Information</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="text-sm text-gray-600 mb-1">Title Number</div>
+                                    <div class="text-lg font-semibold text-gray-900">${propertyData.titleNumber}</div>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="text-sm text-gray-600 mb-1">Tenure Type</div>
+                                    <div class="text-lg font-semibold text-gray-900">${propertyData.tenure}</div>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg md:col-span-2">
+                                    <div class="text-sm text-gray-600 mb-1">Property Address</div>
+                                    <div class="text-lg font-semibold text-gray-900">${propertyData.address}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ownership Information -->
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Current Ownership</h3>
+                            <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <div class="text-sm text-gray-600 mb-1">Registered Proprietor</div>
+                                        <div class="text-lg font-semibold text-gray-900">${propertyData.proprietor}</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-gray-600 mb-1">Registration Date</div>
+                                        <div class="text-lg font-semibold text-gray-900">${propertyData.registrationDate}</div>
+                                    </div>
+                                    <div class="md:col-span-2">
+                                        <div class="text-sm text-gray-600 mb-1">Proprietor Address</div>
+                                        <div class="text-lg font-semibold text-gray-900">${propertyData.proprietorAddress}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Price History -->
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Price Paid History</h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr class="bg-gray-100">
+                                            <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Date</th>
+                                            <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Price</th>
+                                            <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Type</th>
+                                            <th class="px-4 py-3 text-left text-sm font-semibold text-gray-900">Growth</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200">
+                                        ${propertyData.priceHistory.map((item, index) => {
+                                            let growth = '';
+                                            if (index < propertyData.priceHistory.length - 1) {
+                                                const currentPrice = parseInt(item.price.replace(/[£,]/g, ''));
+                                                const previousPrice = parseInt(propertyData.priceHistory[index + 1].price.replace(/[£,]/g, ''));
+                                                const growthPercent = ((currentPrice - previousPrice) / previousPrice * 100).toFixed(1);
+                                                growth = `<span class="text-green-600 font-semibold">+${growthPercent}%</span>`;
+                                            }
+                                            return `
+                                                <tr class="hover:bg-gray-50">
+                                                    <td class="px-4 py-3 text-gray-900">${item.date}</td>
+                                                    <td class="px-4 py-3 text-gray-900 font-semibold">${item.price}</td>
+                                                    <td class="px-4 py-3 text-gray-600">${item.type}</td>
+                                                    <td class="px-4 py-3">${growth}</td>
+                                                </tr>
+                                            `;
+                                        }).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="mt-4 bg-green-50 border border-green-200 rounded-lg p-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <div class="text-sm text-gray-600">Total Appreciation</div>
+                                        <div class="text-2xl font-bold text-green-600">+359.5%</div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-sm text-gray-600">Since First Sale</div>
+                                        <div class="text-lg font-semibold text-gray-900">26 years</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Blockchain Certificate -->
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Blockchain Certificate</h3>
+                            <div class="bg-purple-50 border-2 border-purple-200 rounded-lg p-4">
+                                <div class="flex items-start space-x-3">
+                                    <svg class="w-8 h-8 text-purple-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <div class="flex-1">
+                                        <div class="font-semibold text-gray-900 mb-2">Tamper-Proof Verification</div>
+                                        <div class="text-sm text-gray-600 mb-2">
+                                            This verification has been timestamped on the Ethereum blockchain, providing immutable proof of verification.
+                                        </div>
+                                        <div class="bg-white rounded p-3 border border-purple-200">
+                                            <div class="text-xs text-gray-600 mb-1">Blockchain Transaction Hash</div>
+                                            <div class="text-xs font-mono text-gray-900 break-all">${propertyData.blockchainHash}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-4 pt-6">
+                            <button onclick="downloadPDF()" class="flex-1 bg-blue-600 text-white px-6 py-4 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center space-x-2">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Download PDF Report</span>
+                            </button>
+                            <button onclick="downloadJSON()" class="flex-1 bg-purple-600 text-white px-6 py-4 rounded-lg font-semibold hover:bg-purple-700 transition flex items-center justify-center space-x-2">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Download JSON Data</span>
+                            </button>
+                            <button onclick="shareResults()" class="flex-1 bg-gray-600 text-white px-6 py-4 rounded-lg font-semibold hover:bg-gray-700 transition flex items-center justify-center space-x-2">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z"/>
+                                </svg>
+                                <span>Share Report</span>
+                            </button>
+                        </div>
+
+                        <!-- Disclaimer -->
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                            <div class="flex items-start">
+                                <svg class="w-5 h-5 text-yellow-600 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                </svg>
+                                <div class="text-sm text-gray-700">
+                                    <strong>Demo Data:</strong> This is sample data for demonstration purposes. In production, this would show actual data from HM Land Registry and Companies House APIs.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            resultsSection.classList.remove('hidden');
+        }
+
+        // Download PDF
+        function downloadPDF() {
+            showToast('Generating PDF report...', 'info');
+            
+            // In production, this would generate actual PDF
+            setTimeout(() => {
+                const pdfContent = `
+ASSETRAZ UK - Property Verification Report
+============================================
+
+Verification ID: VER-${Date.now()}
+Generated: ${new Date().toLocaleString('en-GB')}
+
+PROPERTY INFORMATION
+--------------------
+Title Number: DN123456
+Address: 123 Example Street, London, SW1A 1AA
+Tenure: Freehold
+
+CURRENT OWNERSHIP
+-----------------
+Proprietor: John Smith
+Registration Date: 15 March 2018
+Address: 123 Example Street, London, SW1A 1AA
+
+PRICE HISTORY
+-------------
+15 March 2018    £850,000    Transfer
+22 August 2012   £625,000    Transfer
+10 June 2005     £425,000    Transfer
+03 January 1998  £185,000    Transfer
+
+Total Appreciation: +359.5%
+
+BLOCKCHAIN CERTIFICATE
+----------------------
+Transaction Hash: 0x${Math.random().toString(16).substr(2, 64)}
+Timestamp: ${new Date().toISOString()}
+
+This report is certified on the Ethereum blockchain for tamper-proof verification.
+
+---
+Data Sources: HM Land Registry, Companies House
+© ${new Date().getFullYear()} ASSETRAZ UK
+                `.trim();
+                
+                const blob = new Blob([pdfContent], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `ASSETRAZ-Report-${Date.now()}.txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showToast('Report downloaded successfully!', 'success');
+            }, 1000);
+        }
+
+        // Download JSON
+        function downloadJSON() {
+            const data = {
+                verificationId: 'VER-' + Date.now(),
+                timestamp: new Date().toISOString(),
+                property: {
+                    titleNumber: 'DN123456',
+                    address: '123 Example Street, London, SW1A 1AA',
+                    tenure: 'Freehold',
+                    proprietor: 'John Smith',
+                    proprietorAddress: '123 Example Street, London, SW1A 1AA',
+                    registrationDate: '2018-03-15'
+                },
+                priceHistory: [
+                    { date: '2018-03-15', price: 850000, type: 'Transfer' },
+                    { date: '2012-08-22', price: 625000, type: 'Transfer' },
+                    { date: '2005-06-10', price: 425000, type: 'Transfer' },
+                    { date: '1998-01-03', price: 185000, type: 'Transfer' }
+                ],
+                blockchain: {
+                    network: 'Ethereum',
+                    transactionHash: '0x' + Math.random().toString(16).substr(2, 64),
+                    timestamp: new Date().toISOString()
+                },
+                dataSources: [
+                    'HM Land Registry',
+                    'Companies House'
+                ]
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `ASSETRAZ-Data-${Date.now()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showToast('JSON data downloaded successfully!', 'success');
+        }
+
+        // Share results
+        function shareResults() {
+            const shareData = {
+                title: 'ASSETRAZ Property Verification',
+                text: 'Property verification report for 123 Example Street, London',
+                url: window.location.href
+            };
+            
+            if (navigator.share) {
+                navigator.share(shareData)
+                    .then(() => showToast('Report shared successfully!', 'success'))
+                    .catch(() => showToast('Share cancelled', 'info'));
+            } else {
+                // Fallback: copy link
+                const tempInput = document.createElement('input');
+                tempInput.value = window.location.href;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                showToast('Link copied to clipboard!', 'success');
+            }
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'info') {
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+            
+            const colors = {
+                'success': 'bg-green-500',
+                'error': 'bg-red-500',
+                'info': 'bg-blue-500'
+            };
+            
+            const toast = document.createElement('div');
+            toast.className = `fixed top-20 right-4 ${colors[type]} text-white px-6 py-3 rounded-lg shadow-lg z-50 fade-in toast`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 4000);
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0ebd73d68e914f',t:'MTc2MzU0NTE2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
