@@ -127,57 +127,59 @@
   <div class="container mx-auto px-4 py-4">
     <div class="flex items-center justify-between">
 
-      <!-- Logo -->
-      <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
-        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z" />
-        </svg>
-        <div>
-          <h1 class="text-2xl font-bold">ASSETRAZ UK</h1>
-          <p class="text-xs opacity-90">Property Verification Platform</p>
-        </div>
-      </div>
+     <!-- Left: Logo -->
+     <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+       <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
+         <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z" />
+       </svg>
+       <div>
+         <h1 class="text-2xl font-bold">ASSETRAZ UK</h1>
+         <p class="text-xs opacity-90">Property Verification Platform</p>
+       </div>
+     </div>
+   
+     <!-- Right Side: Nav + User -->
+     <div class="flex items-center space-x-4">
+   
+       <!-- Desktop Navigation -->
+       <nav class="hidden md:flex items-center space-x-6">
+         <a href="#" class="nav-link active" onclick="navigateTo('home'); return false;">Home</a>
+         <a href="#" class="nav-link" onclick="navigateTo('verify'); return false;">Verify Property</a>
+         <a href="#" class="nav-link" onclick="navigateTo('features'); return false;">Features</a>
+         <a href="#" class="nav-link" onclick="navigateTo('pricing'); return false;">Pricing</a>
+         <a href="#" class="nav-link" onclick="navigateTo('about'); return false;">About</a>
+         <a href="#" class="nav-link" onclick="navigateTo('contact'); return false;">Contact</a>
+   
+         <button onclick="navigateTo('verify')" 
+           class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">
+           Get Started
+         </button>
+       </nav>
+   
+       <!-- User Profile Icon -->
+       <div class="relative">
+         <button onclick="handleUserIconClick()"
+           class="flex items-center justify-center w-10 h-10 rounded-full bg-white text-purple-600 hover:bg-gray-100 transition">
+           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+             <path fill-rule="evenodd"
+               d="M10 2a4 4 0 100 8 4 4 0 000-8zm-6 14a6 6 0 1112 0H4z"
+               clip-rule="evenodd" />
+           </svg>
+         </button>
+       </div>
+   
+       <!-- Mobile Menu Button -->
+       <button class="md:hidden" onclick="toggleMobileMenu()">
+         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+           <path fill-rule="evenodd"
+             d="M3 5h14M3 10h14M3 15h14"
+             clip-rule="evenodd" />
+         </svg>
+       </button>
+   
+     </div>
+   </div>
 
-      <!-- Right Section -->
-      <div class="flex items-center space-x-4">
-
-        <!-- Desktop Navigation -->
-        <nav class="hidden md:flex items-center space-x-6">
-          <a href="#" class="nav-link active">Home</a>
-          <a href="#" class="nav-link">Verify Property</a>
-          <a href="#" class="nav-link">Features</a>
-          <a href="#" class="nav-link">Pricing</a>
-          <a href="#" class="nav-link">About</a>
-          <a href="#" class="nav-link">Contact</a>
-          <button onclick="navigateTo('verify')"
-            class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold">
-            Get Started
-          </button>
-        </nav>
-
-        <!-- User Profile Icon -->
-        <div class="relative">
-          <button onclick="handleUserIconClick()"
-            class="flex items-center justify-center w-10 h-10 rounded-full bg-white text-purple-600 hover:bg-gray-100 transition">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd"
-                d="M10 2a4 4 0 100 8 4 4 0 000-8zm-6 14a6 6 0 1112 0H4z"
-                clip-rule="evenodd" />
-            </svg>
-          </button>
-        </div>
-
-        <!-- Mobile Menu Button -->
-        <button class="md:hidden" onclick="toggleMobileMenu()">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd"
-              d="M3 5h14M3 10h14M3 15h14"
-              clip-rule="evenodd" />
-          </svg>
-        </button>
-
-      </div>
-    </div>
   </div>
 </header> <!-- Mobile Menu -->
   <div id="mobileMenu" class="mobile-menu fixed inset-y-0 left-0 w-64 bg-white shadow-xl z-50 md:hidden">
@@ -2614,6 +2616,7 @@ Data Sources: HM Land Registry, Companies House
     </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0ef55f8299914f',t:'MTc2MzU0NzQ1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
