@@ -295,11 +295,11 @@
   
       <!-- Login Form -->
       <div id="loginForm">
-        <input type="email" placeholder="Email"
+        <input id="loginEmail" type="email" placeholder="Email"
           class="w-full mb-3 px-4 py-2 border rounded-lg">
-        <input type="password" placeholder="Password"
+        <input id="loginPassword" type="password" placeholder="Password"
           class="w-full mb-4 px-4 py-2 border rounded-lg">
-        <button
+        <button onclick="loginUser()"
           class="w-full bg-purple-600 text-white py-2 rounded-lg font-semibold">
           Login
         </button>
@@ -307,13 +307,15 @@
   
       <!-- Signup Form -->
       <div id="signupForm" class="hidden">
-        <input type="text" placeholder="Full Name"
-          class="w-full mb-3 px-4 py-2 border rounded-lg">
-        <input type="email" placeholder="Email"
-          class="w-full mb-3 px-4 py-2 border rounded-lg">
-        <input type="password" placeholder="Password"
-          class="w-full mb-4 px-4 py-2 border rounded-lg">
-        <button
+       <input id="signupName" type="text" placeholder="Full Name"
+         class="w-full mb-3 px-4 py-2 border rounded-lg">
+       
+       <input id="signupEmail" type="email" placeholder="Email"
+         class="w-full mb-3 px-4 py-2 border rounded-lg">
+       
+       <input id="signupPassword" type="password" placeholder="Password"
+         class="w-full mb-4 px-4 py-2 border rounded-lg">
+        <button onclick="signupUser()"
           class="w-full bg-purple-600 text-white py-2 rounded-lg font-semibold">
           Create Account
         </button>
@@ -1279,6 +1281,19 @@
     </div>
    </div>
   </footer>
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+  const SUPABASE_URL = "https://prkikamrmucromkguxgb.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBya2lrYW1ybXVjcm9ta2d1eGdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYzNTU3NTcsImV4cCI6MjA4MTkzMTc1N30.UhevmldThUcBWpmhrpZUeE0dSrhIEAehZt3P-qHGl9o";
+
+  const supabase = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
+  </script>
+
+
   <script>
          function openAuthModal() {
           document.getElementById('authModal').classList.remove('hidden');
@@ -1307,6 +1322,55 @@
           document.getElementById('loginTab').classList.remove('border-purple-600', 'text-purple-600');
           document.getElementById('loginTab').classList.add('text-gray-500');
         }
+
+
+        async function loginUser() {
+          const email = document.getElementById("loginEmail").value;
+          const password = document.getElementById("loginPassword").value;
+      
+          const { error } = await supabase.auth.signInWithPassword({
+            email,
+            password
+          });
+      
+          if (error) {
+            alert(error.message);
+          } else {
+            closeAuthModal();
+            alert("Logged in successfully");
+          }
+        }
+      
+        async function signupUser() {
+          const email = document.getElementById("signupEmail").value;
+          const password = document.getElementById("signupPassword").value;
+          const name = document.getElementById("signupName").value;
+      
+          const { error } = await supabase.auth.signUp({
+            email,
+            password,
+            options: {
+              data: {
+                full_name: name
+              }
+            }
+          });
+      
+          if (error) {
+            alert(error.message);
+          } else {
+            alert("Signup successful! Check your email.");
+            showLogin();
+          }
+        }
+
+           supabase.auth.onAuthStateChange((event, session) => {
+          if (session) {
+            console.log("User logged in:", session.user.email);
+          }
+        });
+
+
         // Cookie Consent Management
         function checkCookieConsent() {
             const consent = localStorage.getItem('cookieConsent');
@@ -2686,6 +2750,7 @@ Data Sources: HM Land Registry, Companies House
     </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0ef55f8299914f',t:'MTc2MzU0NzQ1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
