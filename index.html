@@ -150,7 +150,7 @@
           <a href="#" class="nav-link" onclick="navigateTo('pricing')">Pricing</a>
           <a href="#" class="nav-link" onclick="navigateTo('about')">About</a>
           <a href="#" class="nav-link" onclick="navigateTo('contact')">Contact</a>
-          <button onclick="navigateTo('verify')"
+          <button onclick="openAuthModal()"
             class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold">
             Login / Signup
           </button>
@@ -265,6 +265,63 @@
     </div>
    </div>
   </div>
+    <!-- Login / Signup Modal -->
+  <div id="authModal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-50">
+  
+    <div class="bg-white rounded-xl shadow-xl w-full max-w-md p-6 relative">
+      
+      <!-- Close button -->
+      <button onclick="closeAuthModal()"
+        class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
+        ✕
+      </button>
+  
+      <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+        Login / Signup
+      </h2>
+  
+      <!-- Tabs -->
+      <div class="flex mb-4 border-b">
+        <button id="loginTab" onclick="showLogin()"
+          class="flex-1 py-2 font-semibold border-b-2 border-purple-600 text-purple-600">
+          Login
+        </button>
+        <button id="signupTab" onclick="showSignup()"
+          class="flex-1 py-2 font-semibold text-gray-500">
+          Signup
+        </button>
+      </div>
+  
+      <!-- Login Form -->
+      <div id="loginForm">
+        <input type="email" placeholder="Email"
+          class="w-full mb-3 px-4 py-2 border rounded-lg">
+        <input type="password" placeholder="Password"
+          class="w-full mb-4 px-4 py-2 border rounded-lg">
+        <button
+          class="w-full bg-purple-600 text-white py-2 rounded-lg font-semibold">
+          Login
+        </button>
+      </div>
+  
+      <!-- Signup Form -->
+      <div id="signupForm" class="hidden">
+        <input type="text" placeholder="Full Name"
+          class="w-full mb-3 px-4 py-2 border rounded-lg">
+        <input type="email" placeholder="Email"
+          class="w-full mb-3 px-4 py-2 border rounded-lg">
+        <input type="password" placeholder="Password"
+          class="w-full mb-4 px-4 py-2 border rounded-lg">
+        <button
+          class="w-full bg-purple-600 text-white py-2 rounded-lg font-semibold">
+          Create Account
+        </button>
+      </div>
+  
+    </div>
+  </div>
+
   <main><!-- HOME PAGE -->
    <div id="homePage" class="page active"><!-- Hero Section -->
     <section class="hero-section text-white py-20">
@@ -1223,6 +1280,33 @@
    </div>
   </footer>
   <script>
+         function openAuthModal() {
+          document.getElementById('authModal').classList.remove('hidden');
+          document.getElementById('authModal').classList.add('flex');
+        }
+      
+        function closeAuthModal() {
+          document.getElementById('authModal').classList.add('hidden');
+          document.getElementById('authModal').classList.remove('flex');
+        }
+      
+        function showLogin() {
+          document.getElementById('loginForm').classList.remove('hidden');
+          document.getElementById('signupForm').classList.add('hidden');
+      
+          document.getElementById('loginTab').classList.add('border-purple-600', 'text-purple-600');
+          document.getElementById('signupTab').classList.remove('border-purple-600', 'text-purple-600');
+          document.getElementById('signupTab').classList.add('text-gray-500');
+        }
+      
+        function showSignup() {
+          document.getElementById('signupForm').classList.remove('hidden');
+          document.getElementById('loginForm').classList.add('hidden');
+      
+          document.getElementById('signupTab').classList.add('border-purple-600', 'text-purple-600');
+          document.getElementById('loginTab').classList.remove('border-purple-600', 'text-purple-600');
+          document.getElementById('loginTab').classList.add('text-gray-500');
+        }
         // Cookie Consent Management
         function checkCookieConsent() {
             const consent = localStorage.getItem('cookieConsent');
@@ -2602,6 +2686,7 @@ Data Sources: HM Land Registry, Companies House
     </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0ef55f8299914f',t:'MTc2MzU0NzQ1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
