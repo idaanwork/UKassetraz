@@ -135,22 +135,22 @@
       </div>
      </div><!-- Desktop Navigation -->
      <nav class="hidden md:flex items-center space-x-6"><a href="#" class="nav-link active hover:text-gray-200 transition" onclick="navigateTo('home'); return false;">Home</a> <a href="#" class="nav-link hover:text-gray-200 transition" onclick="navigateTo('verify'); return false;">Verify Property</a> <a href="#" class="nav-link hover:text-gray-200 transition" onclick="navigateTo('features'); return false;">Features</a> <a href="#" class="nav-link hover:text-gray-200 transition" onclick="navigateTo('pricing'); return false;">Pricing</a> <a href="#" class="nav-link hover:text-gray-200 transition" onclick="navigateTo('about'); return false;">About</a> <a href="#" class="nav-link hover:text-gray-200 transition" onclick="navigateTo('contact'); return false;">Contact</a> <button onclick="navigateTo('verify')" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition"> Get Started </button>
+        <!-- User Profile Icon -->
+     <div class="relative">
+       <button onclick="handleUserIconClick()" class="flex items-center justify-center w-10 h-10 rounded-full bg-white text-purple-600 hover:bg-gray-100 transition">
+         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+           <path fill-rule="evenodd"
+             d="M10 2a4 4 0 100 8 4 4 0 000-8zm-6 14a6 6 0 1112 0H4z"
+             clip-rule="evenodd" />
+         </svg>
+       </button>
+     </div>
+      
      </nav><!-- Mobile Menu Button --> <button class="md:hidden" onclick="toggleMobileMenu()">
       <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
       </svg></button>
     </div>
    </div>
-   <!-- User Profile Icon -->
-  <div class="relative">
-    <button onclick="handleUserIconClick()" class="flex items-center justify-center w-10 h-10 rounded-full bg-white text-purple-600 hover:bg-gray-100 transition">
-      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd"
-          d="M10 2a4 4 0 100 8 4 4 0 000-8zm-6 14a6 6 0 1112 0H4z"
-          clip-rule="evenodd" />
-      </svg>
-    </button>
-  </div>
-
   </header><!-- Mobile Menu -->
   <div id="mobileMenu" class="mobile-menu fixed inset-y-0 left-0 w-64 bg-white shadow-xl z-50 md:hidden">
    <div class="p-4 gradient-bg text-white">
@@ -2586,4 +2586,5 @@ Data Sources: HM Land Registry, Companies House
     </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0ef55f8299914f',t:'MTc2MzU0NzQ1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
