@@ -156,6 +156,18 @@
             class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold">
             Login / Signup
           </button>
+         <!-- Logged OUT -->
+         <div id="authButtons">
+           <button onclick="openAuthModal()">Login / Signup</button>
+         </div>
+         
+         <!-- Logged IN -->
+         <div id="userMenu" class="hidden">
+           <button onclick="toggleUserMenu()">
+             👤
+           </button>
+         </div>
+
         </nav>
         <!-- Mobile Menu Button -->
         <button class="md:hidden" onclick="toggleMobileMenu()">
@@ -1345,6 +1357,7 @@
           }
         
           closeAuthModal();
+          updateAuthUI();
           navigateTo('home');   // ✅ SPA navigation
         }
 
@@ -1362,6 +1375,7 @@
           }
          if (data.user) {
            closeAuthModal();
+           updateAuthUI(); 
            navigateTo('verify');   // ✅ SPA navigation
          }
         }
@@ -1377,9 +1391,27 @@
           navigateTo(page);
         }
 
+        async function updateAuthUI() {
+          const { data } = await supabaseClient.auth.getSession();
+        
+          const authButtons = document.getElementById('authButtons');
+          const userMenu = document.getElementById('userMenu');
+        
+          if (data.session) {
+            // Logged in
+            authButtons.classList.add('hidden');
+            userMenu.classList.remove('hidden');
+          } else {
+            // Logged out
+            authButtons.classList.remove('hidden');
+            userMenu.classList.add('hidden');
+          }
+        }
+
 
         supabaseClient.auth.onAuthStateChange((event, session) => {
           console.log("Auth event:", event);
+          updateAuthUI();
         
           if (session) {
             console.log("User logged in:", session.user.email);
@@ -1393,6 +1425,7 @@
             window.location.href = "home";
           }
         }); 
+
 
 
         // Cookie Consent Management
@@ -1533,6 +1566,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Check cookie consent on page load
             checkCookieConsent();
+            updateAuthUI();
             
             const form = document.getElementById('verificationForm');
             if (form) {
@@ -2774,6 +2808,7 @@ Data Sources: HM Land Registry, Companies House
     </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0ef55f8299914f',t:'MTc2MzU0NzQ1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
