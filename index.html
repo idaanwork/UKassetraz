@@ -158,12 +158,14 @@
           </button>
          <!-- Logged OUT -->
          <div id="authButtons">
-           <button onclick="openAuthModal()">Login / Signup</button>
+           <button onclick="openAuthModal()"
+           class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold">
+           Login / Signup</button>
          </div>
          
          <!-- Logged IN -->
          <div id="userMenu" class="hidden">
-           <button onclick="toggleUserMenu()">
+           <button class="bg-purple-600 text-white px-3 py-2 rounded-full">
              👤
            </button>
          </div>
@@ -1392,12 +1394,12 @@
         }
 
         async function updateAuthUI() {
-          const { data } = await supabaseClient.auth.getSession();
+          const { data, error } = await supabaseClient.auth.getSession();
         
           const authButtons = document.getElementById('authButtons');
           const userMenu = document.getElementById('userMenu');
         
-          if (data.session) {
+          if (data?.user) {
             // Logged in
             authButtons.classList.add('hidden');
             userMenu.classList.remove('hidden');
@@ -2808,6 +2810,7 @@ Data Sources: HM Land Registry, Companies House
     </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0ef55f8299914f',t:'MTc2MzU0NzQ1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
