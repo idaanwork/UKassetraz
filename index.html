@@ -234,40 +234,37 @@
      
        <!-- Navigation -->
        <nav class="p-4 space-y-1">
-       
          <a onclick="navigateTo('home'); toggleMobileMenu()" class="drawer-link">
-           <span class="drawer-icon" data-lucide="home"></span>
+           <span class="drawer-icon">🏠</span>
            <span>Home</span>
          </a>
        
          <a onclick="navigateTo('verify'); toggleMobileMenu()" class="drawer-link">
-           <span class="drawer-icon" data-lucide="check-circle"></span>
+           <span class="drawer-icon">🏡</span>
            <span>Verify Property</span>
          </a>
        
          <a onclick="navigateTo('features'); toggleMobileMenu()" class="drawer-link">
-           <span class="drawer-icon" data-lucide="sparkles"></span>
+           <span class="drawer-icon">✨</span>
            <span>Features</span>
          </a>
        
          <a onclick="navigateTo('pricing'); toggleMobileMenu()" class="drawer-link">
-           <span class="drawer-icon" data-lucide="credit-card"></span>
+           <span class="drawer-icon">💳</span>
            <span>Pricing</span>
          </a>
        
          <a onclick="navigateTo('about'); toggleMobileMenu()" class="drawer-link">
-           <span class="drawer-icon" data-lucide="info"></span>
+           <span class="drawer-icon">ℹ️</span>
            <span>About</span>
          </a>
        
          <a onclick="navigateTo('contact'); toggleMobileMenu()" class="drawer-link">
-           <span class="drawer-icon" data-lucide="phone"></span>
+           <span class="drawer-icon">📞</span>
            <span>Contact</span>
          </a>
-       
        </nav>
-
-     
+    
        <!-- Auth Section -->
        <div class="absolute bottom-0 w-full border-t p-4 space-y-3">
      
@@ -311,13 +308,14 @@
          color: #6d28d9;
        }
      
-       .drawer-icon svg {
-         width: 20px;
-         height: 20px;
-         margin-right: 12px;
-         stroke-width: 1.75;
+       .drawer-icon {
+         width: 1.75rem;        /* forces consistent spacing */
+         text-align: center;
+         font-size: 1.1rem;
+         margin-right: 0.75rem; /* visual breathing room */
        }
      </style>
+
 
    </nav>
   </div><!-- Mobile Menu Overlay -->
@@ -1462,10 +1460,6 @@
        SUPABASE_ANON_KEY
      );
      console.log("Supabase client initialized", supabaseClient);
-  </script>
-
-  <script>
-    lucide.createIcons();
   </script>
 
   <script>
@@ -3070,6 +3064,7 @@ Data Sources: HM Land Registry, Companies House
     </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0ef55f8299914f',t:'MTc2MzU0NzQ1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
