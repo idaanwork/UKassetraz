@@ -166,6 +166,13 @@
              👤
            </button>
          </div>
+         <!-- Logout --> 
+        <div id="userMenuDesktop" class="hidden">
+          <button onclick="logout()"
+            class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold">
+            Logout
+          </button>
+        </div>
 
         </nav>
         <!-- Mobile Menu Button -->
@@ -207,16 +214,15 @@
          class="w-full text-left text-gray-700 font-semibold">
          👤 Profile
        </button>
-   
-       <button
-         onclick="logout(); toggleMobileMenu();"
-         class="w-full text-left text-red-600 font-semibold">
-         Logout
-       </button>
      </div>
-   
+    <!-- Logout -->
+   <div id="userMenuMobile" class="hidden space-y-2">
+     <button
+       onclick="logout(); toggleMobileMenu();"
+       class="w-full text-left text-red-600 font-semibold">
+       Logout
+     </button>
    </div>
-
    </nav>
   </div><!-- Mobile Menu Overlay -->
   <div id="mobileMenuOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden" onclick="toggleMobileMenu()"></div><!-- GDPR Cookie Consent Banner -->
@@ -1364,6 +1370,15 @@
           document.getElementById('loginTab').classList.add('text-gray-500');
         }
 
+        function closeMobileMenu() {
+          const menu = document.getElementById('mobileMenu');
+          const overlay = document.getElementById('mobileMenuOverlay');
+        
+          if (menu) menu.classList.remove('open');
+          if (overlay) overlay.classList.add('hidden');
+        }
+
+
         async function signup() {
           const email = document.getElementById("signupEmail").value;
           const password = document.getElementById("signupPassword").value;
@@ -1405,6 +1420,25 @@
            navigateTo('verify');   // ✅ SPA navigation
          }
         }
+
+        async function logout() {
+          const { error } = await supabaseClient.auth.signOut();
+        
+          if (error) {
+            alert(error.message);
+            return;
+          }
+        
+          // Update UI
+          updateAuthUI();
+        
+          // Go to safe public page
+          navigateTo('home');
+        
+          // Close mobile menu if open
+          closeMobileMenu?.();
+        }
+
 
         async function requireAuth(page) {
           const { data } = await supabaseClient.auth.getSession();
@@ -2835,6 +2869,7 @@ Data Sources: HM Land Registry, Companies House
     </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0ef55f8299914f',t:'MTc2MzU0NzQ1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
