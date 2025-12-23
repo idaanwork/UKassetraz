@@ -167,7 +167,7 @@
            </button> -->
           
          </div>
-         <div class="flex items-center gap-2 cursor-pointer">
+         <div class="flex items-center gap-2 cursor-pointer hidden" id="avatarDesktopWrapper">
            <div id="avatarDesktop"
                 class="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold">
              U
@@ -175,8 +175,8 @@
          </div>
 
          <!-- Logout --> 
-        <div id="userMenuDesktop" class="hidden relative">
-          <button onclick="logout()"
+        <div id="userMenuDesktop" class="hidden relative md:block">
+          <button onclick="openLogoutModal()"
             class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold">
             Logout
           </button>
@@ -1394,7 +1394,7 @@
 
 
   <script>
-         function openAuthModal() {
+        function openAuthModal() {
           document.getElementById('authModal').classList.remove('hidden');
           document.getElementById('authModal').classList.add('flex');
         }
@@ -1441,6 +1441,7 @@
         async function confirmLogout() {
           closeLogoutModal();
           toggleMobileMenu?.();
+          logout();
         
           const { error } = await supabaseClient.auth.signOut();
           if (error) {
@@ -1494,6 +1495,22 @@
            navigateTo('verify');   // ✅ SPA navigation
          }
         }
+       
+        function onUserLoggedIn(user) {
+         // Hide login buttons
+         document.getElementById("authButtons").classList.add("hidden");
+         document.getElementById("authButtonsMobile").classList.add("hidden");
+       
+         // Show avatar + user menus
+         document.getElementById("avatarDesktopWrapper").classList.remove("hidden");
+         document.getElementById("userMenuMobile").classList.remove("hidden");
+       
+         // Set avatar initial
+         const initial = (user.email || "U")[0].toUpperCase();
+         document.getElementById("avatarDesktop").innerText = initial;
+         document.getElementById("avatarMobile").innerText = initial;
+       }
+
 
         async function logout() {
           const { error } = await supabaseClient.auth.signOut();
@@ -1502,15 +1519,15 @@
             alert(error.message);
             return;
           }
-        
+
+          // Close mobile menu if open
+          closeMobileMenu?.();
+         
           // Update UI
           updateAuthUI();
         
           // Go to safe public page
           navigateTo('home');
-        
-          // Close mobile menu if open
-          closeMobileMenu?.();
         }
 
 
@@ -2975,6 +2992,7 @@ Data Sources: HM Land Registry, Companies House
     </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0ef55f8299914f',t:'MTc2MzU0NzQ1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
