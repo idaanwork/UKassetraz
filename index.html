@@ -235,7 +235,7 @@
 
        
         <!-- Spacer -->
-        <div class="h-6"></div>
+        <div class="h-9"></div>
        
       <!-- Logout -->
         <button
@@ -1529,20 +1529,26 @@
           const { data } = await supabaseClient.auth.getSession();
           const loggedIn = !!data?.session?.user;
         
+          console.log('Auth state:', loggedIn);
+        
           toggle('authButtonsDesktop', !loggedIn);
           toggle('userMenuDesktop', loggedIn);
         
           toggle('authButtonsMobile', !loggedIn);
           toggle('userMenuMobile', loggedIn);
         
-          console.log('Auth UI updated. Logged in:', loggedIn);
+          if (loggedIn) updateAvatar();
         }
         
         function toggle(id, show) {
           const el = document.getElementById(id);
-          if (!el) return;
+          if (!el) {
+            console.warn('Missing element:', id);
+            return;
+          }
           el.classList.toggle('hidden', !show);
         }
+
 
         async function updateAvatar() {
           const { data } = await supabaseClient.auth.getUser();
@@ -1550,8 +1556,8 @@
           if (!user) return;
         
           const initial =
-            user.user_metadata?.full_name?.[0] ||
-            user.email?.[0] ||
+            user.user_metadata?.full_name?.charAt[0] ||
+            user.email?.charAt[0] ||
             'U';
         
           ['avatarMobile', 'avatarDesktop'].forEach(id => {
@@ -1715,6 +1721,12 @@
                 overlay.classList.add('hidden');
             }
         }
+
+         document.addEventListener('DOMContentLoaded', updateAuthUI);
+         
+         supabaseClient.auth.onAuthStateChange(() => {
+           updateAuthUI();
+         });
 
         // Toggle input fields based on search type
         document.addEventListener('DOMContentLoaded', () => {
@@ -2963,6 +2975,7 @@ Data Sources: HM Land Registry, Companies House
     </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0ef55f8299914f',t:'MTc2MzU0NzQ1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
